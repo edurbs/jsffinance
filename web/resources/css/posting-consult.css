@@ -1,44 +1,44 @@
-td.tipo { 
+td.type { 
 	width: 20px;
 	text-align: center;
 }
 
-td.pessoa {
+td.person {
 	width: 200px;
 }
 
-td.descricao {
+td.description {
 }
 
-td.valor { 
+td.ammount { 
 	width: 100px;
 	text-align: center;
 }
 
-td.vencimento { 
+td.dueDate { 
 	width: 100px;
 	text-align: center;
 }
 
-td.pagamento { 
+td.payment { 
 	width: 100px;
 	text-align: center;
 }
 
-td.situacao { 
+td.status { 
 	width: 80px;
 	text-align: center;
 }
 
-td.acoes { 
+td.actions { 
 	width: 40px;
 	text-align: center;
 }
 
-.grid .receita {
+.grid .income {
 	color: #0000ff;
 }
 
-.grid .despesa {
+.grid .expense {
 	color: #c23030;
 }

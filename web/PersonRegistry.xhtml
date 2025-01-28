@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+          
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Person registry</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="system.css"/>        
+    </h:head>
+    <h:body>
+        <h1>New person</h1>
+        <h:form id="frm">
+            
+            <h:commandButton value="New"/>
+            <h:commandButton value="Consult"/>            
+            
+            <h:panelGrid columns="2" 
+                         styleClass="form-grid" 
+                         columnClasses="label, field">
+                
+                <h:outputLabel value="Name" for="name"/>
+                <h:inputText id="name"/>
+                
+                <h:outputLabel value="Type"/>
+                <h:selectOneRadio>
+                    <f:selectItem itemLabel="Individual"/>
+                    <f:selectItem itemLabel="Company"/>
+                </h:selectOneRadio>
+                
+                <h:outputLabel value="E-mail" for="email"/>
+                <h:inputText id="email"/>
+                
+                <h:outputLabel value="Birth Day" for="birthDay"/>
+                <h:inputText id="birthDay"/>
+                
+                <h:outputLabel value="Line of Business" for="line-business"/>
+                <h:selectOneMenu>
+                    <f:selectItem itemLabel="Education"/>
+                    <f:selectItem itemLabel="Food"/>
+                    <f:selectItem itemLabel="Health"/>
+                </h:selectOneMenu>
+                
+                <h:outputLabel/>
+                <h:commandButton value="Save"/>
+                
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>

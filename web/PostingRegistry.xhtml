@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+          
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Posting Registry</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="system.css"/>
+    </h:head>
+    <h:body>
+        <h1>New post</h1>
+        <h:form id="frm">
+            <h:commandButton value="New"/>
+            <h:commandButton value="Consult"/>
+            
+            <h:panelGrid columns="2" 
+                         styleClass="form-grid"
+                         columnClasses="label, field"
+                         >
+                
+                <h:outputLabel value="Type"/>
+                <h:selectOneRadio>
+                    <f:selectItem itemLabel="Income"/>
+                    <f:selectItem itemLabel="Expense"/>
+                </h:selectOneRadio>
+                
+                <h:outputLabel value="Person"/>
+                <h:selectOneMenu>
+                    <f:selectItem itemLabel="Escola Infantil"/>
+                </h:selectOneMenu>
+                
+                <h:outputLabel value="Description"/>
+                <h:inputText size="30"/>
+                
+                <h:outputLabel value="Amount"/>
+                <h:inputText size="12"/>
+                
+                <h:outputLabel value="Due Date"/>
+                <h:inputText size="12"/>
+                
+                <h:outputLabel/>
+                <h:panelGroup>
+                    <h:selectBooleanCheckbox/>
+                    <h:outputLabel value="Paid"/>
+                </h:panelGroup>
+                
+                <h:outputLabel value="Payment"/>
+                <h:inputText size="12"/>
+                
+                <h:outputLabel/>
+                <h:commandButton value="Post"/>
+                
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>

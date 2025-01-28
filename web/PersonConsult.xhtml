@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+          
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Person consult</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="system.css"/>
+        <h:outputStylesheet library="css" name="person-consult.css"/>
+    </h:head>
+    <h:body>
+        <h1>People</h1>
+        <h:form id="frm">
+            <h:commandButton value="New"/>
+            <h:dataTable var="person" value="#{personConsult.people}" width="100%"
+                         styleClass="grid" headerClass="header" rowClasses="color-on, color-off" columnClasses="name, type, line-business, actions"
+                         >
+                <h:column>
+                    <f:facet name="header">
+                        Name
+                    </f:facet>
+                    <h:outputText value="Escola Neca Quirino da Silva"/>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        Type
+                    </f:facet>
+                    <h:outputText value="Jurídica"/>
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        Line of business
+                    </f:facet>
+                    <h:outputText value="Educação"/>
+                </h:column>
+                
+                <h:column>
+                    <h:graphicImage value="/images/edit.png"/>
+                    <h:graphicImage value="/images/delete.png"/>
+                </h:column>
+                
+            </h:dataTable>
+            
+        </h:form>
+    </h:body>
+</html>

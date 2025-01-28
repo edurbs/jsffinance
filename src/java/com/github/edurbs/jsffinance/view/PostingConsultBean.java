@@ -1,22 +1,22 @@
 package com.github.edurbs.jsffinance.view;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
+
+import javax.faces.bean.ManagedBean;
 import lombok.Getter;
 
 @ManagedBean
 @Getter
-public class PostingConsultBean {
+public class PostingConsultBean implements Serializable {
     
-    private List<String> postings = new ArrayList<>();
+    private List<String> postings = new ArrayList<String>();    
     
-    @PostConstruct
-    public void init(){
-        for (Integer i = 0; i < 20; i++) {
-            postings.add(i.toString());
-        }
-    }
+    public PostingConsultBean(){
+        for (int i = 0; i < 20; i++) {
+            postings.add("");
+        }        
+    }   
     
 }

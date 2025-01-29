@@ -25,9 +25,13 @@
                          >
                 
                 <h:outputLabel value="Type"/>
-                <h:selectOneRadio value="#{postRegistryBean.post.type}">
-                    <f:selectItem itemLabel="Income"/>
-                    <f:selectItem itemLabel="Expense"/>
+                <h:selectOneRadio value="#{postRegistryBean.post.type}" required="true" label="Post type">
+                    <f:selectItems value="#{postRegistryBean.postTypes}" 
+                                   var="postType"
+                                   itemLabel="#{postType.description}"
+                                   itemValue="#{postType}"
+                                   />
+                    
                 </h:selectOneRadio>
                 
                 <h:outputLabel value="Person"/>
@@ -42,7 +46,7 @@
                                  label="Description" 
                                  required="true"
                                  requiredMessage="Type a description!"
-                                 validatorMessage="Description too small! Must be bigger then 5 chars."
+                                 validatorMessage="Description is too small! Must be bigger then 5 chars."
                                  >
                         <f:validateLength minimum="5"/>
                     </h:inputText>
@@ -53,8 +57,8 @@
                 <h:panelGroup>
                     <h:inputText value="#{postRegistryBean.post.amount}"
                         id="amount" size="12" label="Amount" required="true">
-                        <f:validateLongRange minimum="0" maximum="999"/>
-                        <f:convertNumber maxFractionDigits="2" locale="pt_BR"/>
+                        <f:validateDoubleRange minimum="0"/>
+                        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" locale="pt_BR"/>
                     </h:inputText>
                     <h:message for="amount" showSummary="true" showDetail="false" /> 
                 </h:panelGroup>
@@ -63,18 +67,17 @@
                 <h:panelGroup>
                     <h:inputText value="#{postRegistryBean.post.dueDate}"
                         id="dueDate" size="12" label="Due Date"
-                        converter="LocalDateConversor"
+                        converter="LocalDateConversor" required="true"
                         >
-                        <f:validator validatorId="BusinessDayValidator"/>
-                        
+                        <f:validator validatorId="BusinessDayValidator"/>                        
                     </h:inputText>
                     <h:message for="dueDate" showSummary="true" showDetail="false"/>
                 </h:panelGroup>
                 
                 <h:outputLabel/>
                 <h:panelGroup>
-                    <h:selectBooleanCheckbox value="#{postRegistryBean.post.paid}"/>
-                    <h:outputLabel value="Paid"/>
+                    <h:selectBooleanCheckbox value="#{postRegistryBean.post.paid}" id="paidCheckbox"/>
+                    <h:outputLabel value="Paid" for="paidCheckbox"/>
                 </h:panelGroup>
                 
                 <h:outputLabel value="Payment date" for="payDate" />

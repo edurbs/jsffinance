@@ -61,6 +61,7 @@
                         id="dueDate" size="12" label="Due Date"
                         converter="LocalDateConversor"
                         >
+                        <f:validator validatorId="BusinessDayValidator"/>
                         
                     </h:inputText>
                     <h:message for="dueDate" showSummary="true" showDetail="false"/>
@@ -78,6 +79,7 @@
                         id="payDate" size="12" label="Payment date"
                         converter="LocalDateConversor"
                         >
+                        <f:validator validatorId="BusinessDayValidator" />
                         
                     </h:inputText>
                     <h:message for="payDate" showSummary="true" showDetail="false"/>

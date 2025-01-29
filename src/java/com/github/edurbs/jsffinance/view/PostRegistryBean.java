@@ -1,6 +1,7 @@
 package com.github.edurbs.jsffinance.view;
 
 import com.github.edurbs.jsffinance.domain.Post;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -12,7 +13,7 @@ import lombok.Setter;
 @ViewScoped
 @Getter
 @Setter
-public class PostRegistryBean {
+public class PostRegistryBean implements Serializable{
     
     private List<Post> posts;
     private Post post;

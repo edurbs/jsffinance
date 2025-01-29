@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 public class PersonService {
-    private static Map<Long, Person> people = new HashMap<>();
+    private static Map<Integer, Person> people = new HashMap<>();
     
     static {
-        people.put(1L, new Person(1L, "João da Silva"));
-        people.put(2L, new Person(2L, "Manuel Santos"));
-        people.put(3L, new Person(3L, "José Aparecido"));
+        people.put(1, new Person(1L, "João da Silva"));
+        people.put(2, new Person(2L, "Manuel Santos"));
+        people.put(3, new Person(3L, "José Aparecido"));
     }
     
     public List<Person> listAll(){
@@ -21,7 +21,7 @@ public class PersonService {
         return listPeople;
     }
     
-    public Person findById(Long id){
+    public Person findById(Integer id){
         return people.get(id);
     }
 }

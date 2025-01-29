@@ -35,8 +35,11 @@
                 </h:selectOneRadio>
                 
                 <h:outputLabel value="Person"/>
-                <h:selectOneMenu value="#{postRegistryBean.post.person}">
-                    <f:selectItem itemLabel="Escola Infantil"/>
+                <h:selectOneMenu value="#{postRegistryBean.post.person}" label="Person" required="true">
+                    <f:selectItem itemLabel="Select" noSelectionOption="true"/>
+                    <f:selectItems value="#{postRegistryBean.people}"
+                                   var="person" itemValue="#{person.id}"
+                                   itemLabel="#{person.name}"/>
                 </h:selectOneMenu>
                 
                 <h:outputLabel value="Description" for="description"/>

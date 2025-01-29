@@ -1,10 +1,12 @@
 package com.github.edurbs.jsffinance.view;
 
 import com.github.edurbs.jsffinance.domain.Post;
+import com.github.edurbs.jsffinance.model.Person;
 import com.github.edurbs.jsffinance.model.PostType;
-import java.io.Serializable;
+import com.github.edurbs.jsffinance.service.PersonService;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -16,20 +18,24 @@ import lombok.Setter;
 @ViewScoped
 @Getter
 @Setter
-public class PostRegistryBean implements Serializable{
+public class PostRegistryBean {
     
     private List<Post> posts;
+    private List<Person> people;
     private Post post;
     
-    public PostRegistryBean(){
+    @PostConstruct
+    public void init(){
         posts = new ArrayList<>();
         post = new Post();
+        people = new PersonService().listAll();
     }
     
     public void add(){
         posts.add(post);
         clean();        
         String msg = "Posted with success!";
+        //msg=post.getPerson();
         FacesContext.getCurrentInstance().addMessage(null, 
                 new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
     }

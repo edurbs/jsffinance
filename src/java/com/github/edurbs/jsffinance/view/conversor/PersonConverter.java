@@ -16,7 +16,7 @@ public class PersonConverter implements Converter{
         }
         
         try {
-            return new PersonService().findById(Integer.valueOf(value));
+            return new PersonService().findById(Long.valueOf(value));
         } catch (NumberFormatException numberFormatException) {
             return null;
         }

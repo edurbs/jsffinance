@@ -1,6 +1,7 @@
 package com.github.edurbs.jsffinance.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,4 +20,8 @@ public class Person implements Serializable{
     private Long id;
     
     private String name;
+    private PersonType personType;
+    private String email;
+    private LocalDate birthday;
+    private BusinessLine businessLine;
 }

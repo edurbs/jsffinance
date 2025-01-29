@@ -31,11 +31,10 @@ public class PostRegistryBean {
         people = new PersonService().listAll();
     }
     
-    public void add(){
+    public void add(){        
         posts.add(post);
         clean();        
-        String msg = "Posted with success!";
-        //msg=post.getPerson();
+        String msg = "Posted with success!";        
         FacesContext.getCurrentInstance().addMessage(null, 
                 new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
     }

@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @ManagedBean
 @Getter
-public class PersonConsult {
+public class PersonConsultBean {
     
     private List<String> people = new ArrayList<>();
     

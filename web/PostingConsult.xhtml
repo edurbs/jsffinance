@@ -13,7 +13,7 @@
         <h1>Posting</h1>
         
         <h:form id="frm">
-            <h:commandButton value="New post"/>
+            <h:commandButton value="New post" action="PostingRegistry?faces-redirect=true"/>
             
             <h:dataTable var="post" value="#{postingConsultBean.postings}"  width="100%"
                          styleClass="grid" headerClass="header" rowClasses="color-on, color-off"

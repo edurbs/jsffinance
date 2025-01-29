@@ -12,8 +12,8 @@
     <h:body>
         <h1>New post</h1>
         <h:form id="frm">
-            <h:commandButton value="New"/>
-            <h:commandButton value="Consult"/>
+            <h:commandButton value="New" type="reset" actionListener="#{postRegistryBean.clean}" immediate="true" />
+            <h:commandButton value="Consult" action="PostingConsult?faces-redirect=true" immediate="true" />
             
             <h:panelGrid columns="2" 
                          styleClass="form-grid"
@@ -21,19 +21,21 @@
                          >
                 
                 <h:outputLabel value="Type"/>
-                <h:selectOneRadio>
+                <h:selectOneRadio value="#{postRegistryBean.post.type}">
                     <f:selectItem itemLabel="Income"/>
                     <f:selectItem itemLabel="Expense"/>
                 </h:selectOneRadio>
                 
                 <h:outputLabel value="Person"/>
-                <h:selectOneMenu>
+                <h:selectOneMenu value="#{postRegistryBean.post.person}">
                     <f:selectItem itemLabel="Escola Infantil"/>
                 </h:selectOneMenu>
                 
                 <h:outputLabel value="Description" for="description"/>
                 <h:panelGroup>
-                    <h:inputText id="description" size="30" label="Description" 
+                    <h:inputText value="#{postRegistryBean.post.description}" 
+                                 id="description" size="30" 
+                                 label="Description" 
                                  required="true"
                                  requiredMessage="Type a description!"
                                  validatorMessage="Description too small! Must be bigger then 5 chars."
@@ -45,7 +47,8 @@
                 
                 <h:outputLabel value="Amount" for="amount"/>
                 <h:panelGroup>
-                    <h:inputText id="amount" size="12" label="Amount" required="true">
+                    <h:inputText value="#{postRegistryBean.post.amount}"
+                        id="amount" size="12" label="Amount" required="true">
                         <f:validateLongRange minimum="0" maximum="999"/>
                         <f:convertNumber maxFractionDigits="2" locale="pt_BR"/>
                     </h:inputText>
@@ -54,7 +57,8 @@
                 
                 <h:outputLabel value="Due Date" for="dueDate"/>
                 <h:panelGroup>
-                    <h:inputText id="dueDate" size="12" label="Due Date">
+                    <h:inputText value="#{postRegistryBean.post.dueDate}"
+                        id="dueDate" size="12" label="Due Date">
                         <f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"/>
                     </h:inputText>
                     <h:message for="dueDate" showSummary="true" showDetail="false"/>
@@ -62,20 +66,23 @@
                 
                 <h:outputLabel/>
                 <h:panelGroup>
-                    <h:selectBooleanCheckbox/>
+                    <h:selectBooleanCheckbox value="#{postRegistryBean.post.paid}"/>
                     <h:outputLabel value="Paid"/>
                 </h:panelGroup>
                 
                 <h:outputLabel value="Payment date" for="payDate" />
                 <h:panelGroup>
-                    <h:inputText id="payDate" size="12" label="Payment date">
+                    <h:inputText value="#{postRegistryBean.post.payDate}"
+                        id="payDate" size="12" label="Payment date">
                         <f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"/>
                     </h:inputText>
                     <h:message for="payDate" showSummary="true" showDetail="false"/>
                 </h:panelGroup>
                 
                 <h:outputLabel/>
-                <h:commandButton value="Post"/>
+                <h:panelGroup>
+                    <h:commandButton value="Post" action="#{postRegistryBean.add}"/>                    
+                </h:panelGroup>
                 
             </h:panelGrid>
         </h:form>

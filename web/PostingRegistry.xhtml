@@ -58,8 +58,10 @@
                 <h:outputLabel value="Due Date" for="dueDate"/>
                 <h:panelGroup>
                     <h:inputText value="#{postRegistryBean.post.dueDate}"
-                        id="dueDate" size="12" label="Due Date">
-                        <f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"/>
+                        id="dueDate" size="12" label="Due Date"
+                        converter="LocalDateConversor"
+                        >
+                        
                     </h:inputText>
                     <h:message for="dueDate" showSummary="true" showDetail="false"/>
                 </h:panelGroup>
@@ -73,8 +75,10 @@
                 <h:outputLabel value="Payment date" for="payDate" />
                 <h:panelGroup>
                     <h:inputText value="#{postRegistryBean.post.payDate}"
-                        id="payDate" size="12" label="Payment date">
-                        <f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"/>
+                        id="payDate" size="12" label="Payment date"
+                        converter="LocalDateConversor"
+                        >
+                        
                     </h:inputText>
                     <h:message for="payDate" showSummary="true" showDetail="false"/>
                 </h:panelGroup>

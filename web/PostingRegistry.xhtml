@@ -31,12 +31,22 @@
                     <f:selectItem itemLabel="Escola Infantil"/>
                 </h:selectOneMenu>
                 
-                <h:outputLabel value="Description"/>
-                <h:inputText size="30"/>
+                <h:outputLabel value="Description" for="description"/>
+                <h:panelGroup>
+                    <h:inputText id="description" size="30" label="Description" 
+                                 required="true"
+                                 requiredMessage="Type a description!"
+                                 validatorMessage="Description too small! Must be bigger then 5 chars."
+                                 >
+                        <f:validateLength minimum="5"/>
+                    </h:inputText>
+                    <h:message for="description" showSummary="true" showDetail="false"/>
+                </h:panelGroup>
                 
                 <h:outputLabel value="Amount" for="amount"/>
                 <h:panelGroup>
-                    <h:inputText id="amount" size="12" label="Amount">
+                    <h:inputText id="amount" size="12" label="Amount" required="true">
+                        <f:validateLongRange minimum="0" maximum="999"/>
                         <f:convertNumber maxFractionDigits="2" locale="pt_BR"/>
                     </h:inputText>
                     <h:message for="amount" showSummary="true" showDetail="false" /> 

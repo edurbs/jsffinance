@@ -34,11 +34,21 @@
                 <h:outputLabel value="Description"/>
                 <h:inputText size="30"/>
                 
-                <h:outputLabel value="Amount"/>
-                <h:inputText size="12"/>
+                <h:outputLabel value="Amount" for="amount"/>
+                <h:panelGroup>
+                    <h:inputText id="amount" size="12" label="Amount">
+                        <f:convertNumber maxFractionDigits="2" locale="pt_BR"/>
+                    </h:inputText>
+                    <h:message for="amount" showSummary="true" showDetail="false" /> 
+                </h:panelGroup>
                 
-                <h:outputLabel value="Due Date"/>
-                <h:inputText size="12"/>
+                <h:outputLabel value="Due Date" for="dueDate"/>
+                <h:panelGroup>
+                    <h:inputText id="dueDate" size="12" label="Due Date">
+                        <f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"/>
+                    </h:inputText>
+                    <h:message for="dueDate" showSummary="true" showDetail="false"/>
+                </h:panelGroup>
                 
                 <h:outputLabel/>
                 <h:panelGroup>
@@ -46,8 +56,13 @@
                     <h:outputLabel value="Paid"/>
                 </h:panelGroup>
                 
-                <h:outputLabel value="Payment"/>
-                <h:inputText size="12"/>
+                <h:outputLabel value="Payment date" for="payDate" />
+                <h:panelGroup>
+                    <h:inputText id="payDate" size="12" label="Payment date">
+                        <f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"/>
+                    </h:inputText>
+                    <h:message for="payDate" showSummary="true" showDetail="false"/>
+                </h:panelGroup>
                 
                 <h:outputLabel/>
                 <h:commandButton value="Post"/>

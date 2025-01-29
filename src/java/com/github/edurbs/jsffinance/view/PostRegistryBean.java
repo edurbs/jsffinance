@@ -1,8 +1,8 @@
 package com.github.edurbs.jsffinance.view;
 
+import com.github.edurbs.jsffinance.domain.Person;
 import com.github.edurbs.jsffinance.domain.Post;
-import com.github.edurbs.jsffinance.model.Person;
-import com.github.edurbs.jsffinance.model.PostType;
+import com.github.edurbs.jsffinance.domain.PostType;
 import com.github.edurbs.jsffinance.service.PersonService;
 import java.util.ArrayList;
 import java.util.List;

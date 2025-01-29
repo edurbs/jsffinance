@@ -1,5 +1,5 @@
 
-package com.github.edurbs.jsffinance.model;
+package com.github.edurbs.jsffinance.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

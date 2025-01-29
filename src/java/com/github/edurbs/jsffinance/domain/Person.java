@@ -1,4 +1,4 @@
-package com.github.edurbs.jsffinance.model;
+package com.github.edurbs.jsffinance.domain;
 
 import java.io.Serializable;
 import lombok.AllArgsConstructor;

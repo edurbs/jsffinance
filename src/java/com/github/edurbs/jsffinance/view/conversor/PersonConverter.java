@@ -1,6 +1,6 @@
 package com.github.edurbs.jsffinance.view.conversor;
 
-import com.github.edurbs.jsffinance.model.Person;
+import com.github.edurbs.jsffinance.domain.Person;
 import com.github.edurbs.jsffinance.service.PersonService;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

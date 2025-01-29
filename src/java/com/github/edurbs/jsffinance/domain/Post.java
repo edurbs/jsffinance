@@ -3,10 +3,21 @@ package com.github.edurbs.jsffinance.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Post implements Serializable{
+    
+    @EqualsAndHashCode.Include
+    private Long id;
     
     private String type;
     private String person;

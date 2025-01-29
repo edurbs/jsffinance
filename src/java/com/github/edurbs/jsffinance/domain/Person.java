@@ -24,4 +24,9 @@ public class Person implements Serializable{
     private String email;
     private LocalDate birthday;
     private BusinessLine businessLine;
+    
+    public Person(Long id, String name){
+        this.id = id;
+        this.name = name;
+    }
 }

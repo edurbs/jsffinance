@@ -15,6 +15,10 @@
             <h:button value="New" outcome="PostRegistry" />
             <h:button value="Consult" outcome="PostConsult" />
             
+            <h:messages showSummary="false" showDetail="true"
+                        styleClass="form-messages" errorClass="error" infoClass="info"
+                        />
+            
             <h:panelGrid columns="2" 
                          styleClass="form-grid"
                          columnClasses="label, field"
@@ -92,6 +96,6 @@
                 
             </h:panelGrid>
         </h:form>
-        <h:messages showSummary="false" showDetail="true"/>
+        
     </h:body>
 </html>

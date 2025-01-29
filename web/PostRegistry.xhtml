@@ -79,27 +79,32 @@
                 
                 <h:outputLabel/>
                 <h:panelGroup>
-                    <h:selectBooleanCheckbox value="#{postRegistryBean.post.paid}" id="paidCheckbox"/>
+                    <h:selectBooleanCheckbox value="#{postRegistryBean.post.paid}" id="paidCheckbox"
+                                             immediate="true"
+                                             valueChangeListener="#{postRegistryBean.onIsPaidChange}"
+                                             onchange="submit();"
+                                             />
                     <h:outputLabel value="Paid" for="paidCheckbox"/>
                 </h:panelGroup>
                 
-                <h:outputLabel value="Payment date" for="payDate" />
-                <h:panelGroup>
+                <h:outputLabel value="Payment date" for="payDate" rendered="#{postRegistryBean.post.paid}"/>
+                <h:panelGroup rendered="#{postRegistryBean.post.paid}" >
                     <h:inputText value="#{postRegistryBean.post.payDate}"
                         id="payDate" size="12" label="Payment date"
                         converter="LocalDateConversor"
+                       
                         >
+                        <f:validator validatorId="ConditionalRequiredValidator" />
                         <f:validator validatorId="BusinessDayValidator" />
                         <f:validator validatorId="PresentOrPastDateValidator" />
+                        <f:attribute name="isPaid" value="#{postRegistryBean.post.paid}" />
                         
                     </h:inputText>
                     <h:message for="payDate" showSummary="true" showDetail="false"/>
                 </h:panelGroup>
                 
-                <h:outputLabel/>
-                <h:panelGroup>
-                    <h:commandButton value="Post" action="#{postRegistryBean.add}"/>                    
-                </h:panelGroup>
+                <h:outputLabel />
+                <h:commandButton value="Post" action="#{postRegistryBean.add}"/>                    
                 
             </h:panelGrid>
         </h:form>

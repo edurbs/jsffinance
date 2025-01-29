@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,5 +47,12 @@ public class PostRegistryBean {
     public PostType[] getPostTypes(){
         return PostType.values();
     }
+    
+    public void onIsPaidChange(ValueChangeEvent event){
+        post.setPaid((Boolean) event.getNewValue());
+        post.setPayDate(null);
+        FacesContext.getCurrentInstance().renderResponse();
+    }
+    
     
 }

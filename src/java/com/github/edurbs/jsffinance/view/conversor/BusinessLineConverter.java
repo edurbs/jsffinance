@@ -1,6 +1,6 @@
 package com.github.edurbs.jsffinance.view.conversor;
 
-import com.github.edurbs.jsffinance.domain.BusinessLine;
+import com.github.edurbs.jsffinance.model.BusinessLine;
 import com.github.edurbs.jsffinance.service.BusinessLineService;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

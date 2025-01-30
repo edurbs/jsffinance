@@ -1,8 +1,8 @@
 package com.github.edurbs.jsffinance.view;
 
-import com.github.edurbs.jsffinance.domain.BusinessLine;
-import com.github.edurbs.jsffinance.domain.Person;
-import com.github.edurbs.jsffinance.domain.PersonType;
+import com.github.edurbs.jsffinance.model.BusinessLine;
+import com.github.edurbs.jsffinance.model.Person;
+import com.github.edurbs.jsffinance.model.PersonType;
 import com.github.edurbs.jsffinance.service.BusinessLineService;
 import java.util.ArrayList;
 import java.util.List;

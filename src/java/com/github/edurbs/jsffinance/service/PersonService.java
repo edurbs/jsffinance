@@ -1,6 +1,6 @@
 package com.github.edurbs.jsffinance.service;
 
-import com.github.edurbs.jsffinance.domain.Person;
+import com.github.edurbs.jsffinance.model.Person;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

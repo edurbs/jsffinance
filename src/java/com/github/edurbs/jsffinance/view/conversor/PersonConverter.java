@@ -5,8 +5,9 @@ import com.github.edurbs.jsffinance.service.PersonService;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 
-//@FacesConverter(forClass=Person.class)
+@FacesConverter(forClass=Person.class)
 public class PersonConverter implements Converter{
 
     @Override

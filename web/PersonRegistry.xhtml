@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-          
+
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Person registry</title>
@@ -12,30 +12,33 @@
     <h:body>
         <h1>New person</h1>
         <h:form id="frm">
-            
+
             <h:button outcome="PersonRegistry" value="New"/>
             <h:button outcome="PersonConsult" value="Consult"/>     
-            
+
             <h:messages showDetail="true" showSummary="false" 
                         styleClass="form-messages" 
                         errorClass="error" 
                         infoClass="info"
                         />
-            
+
             <h:panelGrid columns="2" 
                          styleClass="form-grid" 
                          columnClasses="label, field">
-                
+
                 <h:outputLabel value="Name" for="name" />
                 <h:inputText id="name" value="#{personRegistryBean.person.name}" required="true" label="Name" />
-                
-                <h:outputLabel value="Person Type"/>
-                <h:selectOneRadio value="#{personRegistryBean.person.personType}" label="Person Type" required="true">
+
+                <h:outputLabel value="Person Type" for="personTypeRadio"/>
+                <h:selectOneRadio value="#{personRegistryBean.person.personType}" label="Person Type" required="true" id="personTypeRadio"
+                                  immediate="true"
+                                  valueChangeListener="#{personRegistryBean.onPersonTypeChange}"                                  
+                                  onchange="submit();" >
                     <f:selectItems var="type" value="#{personRegistryBean.personTypes}"
                                    itemLabel="#{type.description}" 
                                    itemValue="#{type}" />
                 </h:selectOneRadio>
-                
+
                 <h:outputLabel value="E-mail" for="email"/>
                 <h:panelGroup>
                     <h:inputText id="email" value="#{personRegistryBean.person.email}" label="Email" required="true">
@@ -43,28 +46,32 @@
                     </h:inputText>
                     <h:message for="email" showDetail="true" showSummary="false"/>
                 </h:panelGroup>
-                
-                <h:outputLabel value="Birthday" for="birthDay"/>
-                <h:panelGroup>
+
+                <h:outputLabel value="Birthday" for="birthDay" rendered="#{personRegistryBean.individual}"/>
+                <h:panelGroup rendered="#{personRegistryBean.individual}" >
                     <h:inputText id="birthDay" value="#{personRegistryBean.person.birthday}" label="Birthday">
                         <f:converter converterId="LocalDateConverter" for="birthDay" />
+                        <f:attribute name="individual" value="#{personRegistryBean.individual}" />
                     </h:inputText>
                     <h:message for="birthDay" showSummary="false" showDetail="true" />
                 </h:panelGroup>
-                
-                <h:outputLabel value="Business Line" for="businessLine"/>
-                <h:selectOneMenu id="businessLine" label="Business Line"
-                                 value="#{personRegistryBean.person.businessLine}">
-                    <f:selectItem noSelectionOption="true" itemLabel="Select" />
-                    <f:selectItems var="line" 
-                                   itemLabel="#{line.description}"
-                                   itemValue="#{line}"
-                                   value="#{personRegistryBean.businessLines}" />
-                </h:selectOneMenu>
-                
+
+                <h:outputLabel value="Business Line" for="businessLine" rendered="#{personRegistryBean.company}" />
+                <h:panelGroup rendered="#{personRegistryBean.company}">
+                    <h:selectOneMenu id="businessLine" label="Business Line"
+                                     value="#{personRegistryBean.person.businessLine}">
+                        <f:selectItem noSelectionOption="true" itemLabel="Select" />
+                        <f:selectItems var="line" 
+                                       itemLabel="#{line.description}"
+                                       itemValue="#{line}"
+                                       value="#{personRegistryBean.businessLines}" />
+                        <f:attribute name="company" value="#{personRegistryBean.company}" />
+                    </h:selectOneMenu>
+                </h:panelGroup>
+
                 <h:outputLabel/>
                 <h:commandButton value="Save" actionListener="#{personRegistryBean.add}"/>
-                
+
             </h:panelGrid>
         </h:form>
     </h:body>

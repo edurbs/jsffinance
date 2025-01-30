@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +19,6 @@ import lombok.Setter;
 @ViewScoped
 @Getter
 @Setter
-
 public class PersonRegistryBean {
     
     private List<Person> people;
@@ -32,7 +32,7 @@ public class PersonRegistryBean {
     
     public void add(){
     people.add(person);
-        String msg = "Posted with sucess! Business Line: "+ person.getBusinessLine().getDescription();
+        String msg = "Posted with sucess!" ;
         FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg);
         FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         person = new Person();
@@ -44,6 +44,40 @@ public class PersonRegistryBean {
     
     public List<BusinessLine> getBusinessLines(){
         return new BusinessLineService().listAll();
+    }
+    
+    public void isIndividual(boolean individual){
+        person.setPersonType(PersonType.INDIVIDUAL);
+    }
+    
+    public boolean isIndividual(){
+        if(person.getPersonType()==null){
+            return false;
+        }
+        return person.getPersonType().equals(PersonType.INDIVIDUAL);
+    }
+    
+    public boolean isCompany(){
+        if(person.getPersonType()==null){
+            return false;
+        }
+        return person.getPersonType().equals(PersonType.COMPANY);
+    }
+    
+    public void isCompany(boolean company){
+        person.setPersonType(PersonType.COMPANY);
+    }
+    
+    public void onPersonTypeChange(ValueChangeEvent event){
+        PersonType personType = (PersonType) event.getNewValue();
+        person.setPersonType(personType);
+        
+        if(PersonType.INDIVIDUAL.equals(personType)){            
+            person.setBusinessLine(null);
+        }else if(PersonType.COMPANY.equals(personType)){            
+            person.setBirthday(null);
+        }
+        FacesContext.getCurrentInstance().renderResponse();
     }
 
 }

@@ -19,7 +19,7 @@ public class PersonConverter implements Converter{
         
         try {            
             Session session =session = HibernateUtil.getSession();            
-            Person person = (Person) session.load(Person.class, Long.valueOf(value));            
+            Person person = (Person) session.get(Person.class, Long.valueOf(value));            
             session.close();
             return person;
             

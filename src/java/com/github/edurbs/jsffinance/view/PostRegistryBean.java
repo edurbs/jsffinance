@@ -5,6 +5,7 @@ import com.github.edurbs.jsffinance.model.Post;
 import com.github.edurbs.jsffinance.model.PostType;
 import com.github.edurbs.jsffinance.persistence.HibernateUtil;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -25,7 +26,7 @@ public class PostRegistryBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
-    private List<Post> posts;
+    private List<Post> posts = new ArrayList<>();
     private List<Person> people;
     private Post post = new Post();
     
@@ -45,12 +46,9 @@ public class PostRegistryBean implements Serializable {
         String msg = "Posted with success! Person name: " +post.getPerson().getName();        
         FacesContext.getCurrentInstance().addMessage(null, 
                 new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-        clean();
-    }
-    
-    public void clean(){
         post = new Post();
     }
+    
     
     public PostType[] getPostTypes(){
         return PostType.values();

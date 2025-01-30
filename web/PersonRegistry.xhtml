@@ -13,33 +13,35 @@
         <h1>New person</h1>
         <h:form id="frm">
             
-            <h:commandButton value="New"/>
-            <h:commandButton value="Consult"/>            
+            <h:button outcome="PersonRegistry" value="New"/>
+            <h:button outcome="PersonConsult" value="Consult"/>            
             
             <h:panelGrid columns="2" 
                          styleClass="form-grid" 
                          columnClasses="label, field">
                 
                 <h:outputLabel value="Name" for="name"/>
-                <h:inputText id="name"/>
+                <h:inputText id="name" value="#{personRegistryBean.person.name}" />
                 
                 <h:outputLabel value="Type"/>
-                <h:selectOneRadio>
-                    <f:selectItem itemLabel="Individual"/>
-                    <f:selectItem itemLabel="Company"/>
+                <h:selectOneRadio value="#{personRegistryBean.person.personType}">
+                    <f:selectItems var="type" value="#{personRegistryBean.personTypes}"
+                                   itemLabel="#{type.description}" 
+                                   itemValue="#{type}" />
                 </h:selectOneRadio>
                 
                 <h:outputLabel value="E-mail" for="email"/>
-                <h:inputText id="email"/>
+                <h:inputText id="email" value="#{personRegistryBean.person.email}"/>
                 
                 <h:outputLabel value="Birthday" for="birthDay"/>
-                <h:inputText id="birthDay"/>
+                <h:inputText id="birthDay" value="#{personRegistryBean.person.birthday}"/>
                 
                 <h:outputLabel value="Business Line" for="businessLine"/>
-                <h:selectOneMenu id="businessLine">
-                    <f:selectItem itemLabel="Education"/>
-                    <f:selectItem itemLabel="Food"/>
-                    <f:selectItem itemLabel="Health"/>
+                <h:selectOneMenu id="businessLine" value="#{personRegistryBean.person.businessLine}">
+                    <f:selectItems var="line" 
+                                   itemLabel="#{line.description}"
+                                   itemValue="#{line.id}"
+                                   value="#{personRegistryBean.businessLines}" />
                 </h:selectOneMenu>
                 
                 <h:outputLabel/>

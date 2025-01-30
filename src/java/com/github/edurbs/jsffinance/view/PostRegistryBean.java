@@ -4,6 +4,7 @@ import com.github.edurbs.jsffinance.domain.Person;
 import com.github.edurbs.jsffinance.domain.Post;
 import com.github.edurbs.jsffinance.domain.PostType;
 import com.github.edurbs.jsffinance.service.PersonService;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -19,7 +20,9 @@ import lombok.Setter;
 @ViewScoped
 @Getter
 @Setter
-public class PostRegistryBean {
+public class PostRegistryBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     
     private List<Post> posts;
     private List<Person> people;
@@ -32,12 +35,12 @@ public class PostRegistryBean {
         people = new PersonService().listAll();
     }
     
-    public void add(){        
-        posts.add(post);
-        clean();        
-        String msg = "Posted with success!";        
+    public void add(){                
+        posts.add(post);        
+        String msg = "Posted with success! Person name: " +post.getPerson().getName();        
         FacesContext.getCurrentInstance().addMessage(null, 
                 new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+        clean();
     }
     
     public void clean(){

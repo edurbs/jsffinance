@@ -20,7 +20,7 @@ public class Post implements Serializable{
     private Long id;
     
     private String type;
-    private String person;
+    private Person person;
     private String description;
     private BigDecimal amount;
     private LocalDate dueDate;

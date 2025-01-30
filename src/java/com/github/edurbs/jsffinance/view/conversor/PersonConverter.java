@@ -1,11 +1,12 @@
 package com.github.edurbs.jsffinance.view.conversor;
 
 import com.github.edurbs.jsffinance.model.Person;
-import com.github.edurbs.jsffinance.service.PersonService;
+import com.github.edurbs.jsffinance.persistence.HibernateUtil;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.hibernate.Session;
 
 @FacesConverter(forClass=Person.class)
 public class PersonConverter implements Converter{
@@ -16,9 +17,15 @@ public class PersonConverter implements Converter{
             return null;
         }
         
-        try {
-            return new PersonService().findById(Long.valueOf(value));
+        try {            
+            Session session =session = HibernateUtil.getSession();            
+            Person person = (Person) session.load(Person.class, Long.valueOf(value));            
+            session.close();
+            return person;
+            
+            //return new PersonService().findById(Long.valueOf(value));
         } catch (NumberFormatException numberFormatException) {
+            
             return null;
         }
     }

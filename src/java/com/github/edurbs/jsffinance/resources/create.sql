@@ -20,3 +20,8 @@ insert into person (name) values ('Tchau Telecom');
 insert into person (name) values ('Pastelaria 99');
 insert into person (name) values ('Panificadora do José');
 insert into person (name) values ('Mercado Preço Bom');
+
+ALTER TABLE jsffinance.person ADD person_type varchar(100) NULL;
+ALTER TABLE jsffinance.person ADD email varchar(100) NULL;
+ALTER TABLE jsffinance.person ADD birthday DATE NULL;
+ALTER TABLE jsffinance.person ADD bussines_line varchar(100) NULL;

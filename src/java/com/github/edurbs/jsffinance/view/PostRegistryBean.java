@@ -16,6 +16,7 @@ import javax.faces.event.ValueChangeEvent;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 
 @ManagedBean
@@ -41,12 +42,16 @@ public class PostRegistryBean implements Serializable {
         session.close();
     }
     
-    public void add(){                
-        posts.add(post);        
-        String msg = "Posted with success! Person name: " +post.getPerson().getName();        
+    public void add(){        
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(post);
+        transaction.commit();
+        session.close();                
+        
+        String msg = "Posted with success!";      
         FacesContext.getCurrentInstance().addMessage(null, 
                 new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-        post = new Post();
     }
     
     

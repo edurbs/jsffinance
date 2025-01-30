@@ -1,3 +1,8 @@
+CREATE USER 'root'@'%' IDENTIFIED BY 'some_pass';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
+
+CREATE DATABASE `jsffinance` ;
+
 create table person (
   id int not null auto_increment primary key,
   name varchar(100) not null
@@ -25,3 +30,5 @@ ALTER TABLE jsffinance.person ADD person_type varchar(100) NULL;
 ALTER TABLE jsffinance.person ADD email varchar(100) NULL;
 ALTER TABLE jsffinance.person ADD birthday DATE NULL;
 ALTER TABLE jsffinance.person ADD bussines_line varchar(100) NULL;
+ALTER TABLE jsffinance.person CHANGE bussines_line business_line varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+

@@ -14,38 +14,56 @@
         <h:form id="frm">
             
             <h:button outcome="PersonRegistry" value="New"/>
-            <h:button outcome="PersonConsult" value="Consult"/>            
+            <h:button outcome="PersonConsult" value="Consult"/>     
+            
+            <h:messages showDetail="true" showSummary="false" 
+                        styleClass="form-messages" 
+                        errorClass="error" 
+                        infoClass="info"
+                        />
             
             <h:panelGrid columns="2" 
                          styleClass="form-grid" 
                          columnClasses="label, field">
                 
-                <h:outputLabel value="Name" for="name"/>
-                <h:inputText id="name" value="#{personRegistryBean.person.name}" />
+                <h:outputLabel value="Name" for="name" />
+                <h:inputText id="name" value="#{personRegistryBean.person.name}" required="true" label="Name" />
                 
-                <h:outputLabel value="Type"/>
-                <h:selectOneRadio value="#{personRegistryBean.person.personType}">
+                <h:outputLabel value="Person Type"/>
+                <h:selectOneRadio value="#{personRegistryBean.person.personType}" label="Person Type" required="true">
                     <f:selectItems var="type" value="#{personRegistryBean.personTypes}"
                                    itemLabel="#{type.description}" 
                                    itemValue="#{type}" />
                 </h:selectOneRadio>
                 
                 <h:outputLabel value="E-mail" for="email"/>
-                <h:inputText id="email" value="#{personRegistryBean.person.email}"/>
+                <h:panelGroup>
+                    <h:inputText id="email" value="#{personRegistryBean.person.email}" label="Email" required="true">
+                        <f:validator validatorId="EmailValidator" />
+                    </h:inputText>
+                    <h:message for="email" showDetail="true" showSummary="false"/>
+                </h:panelGroup>
                 
                 <h:outputLabel value="Birthday" for="birthDay"/>
-                <h:inputText id="birthDay" value="#{personRegistryBean.person.birthday}"/>
+                <h:panelGroup>
+                    <h:inputText id="birthDay" value="#{personRegistryBean.person.birthday}" label="Birthday">
+                        <f:converter converterId="LocalDateConverter" for="birthDay" />
+                    </h:inputText>
+                    <h:message for="birthDay" showSummary="false" showDetail="true" />
+                </h:panelGroup>
                 
                 <h:outputLabel value="Business Line" for="businessLine"/>
-                <h:selectOneMenu id="businessLine" value="#{personRegistryBean.person.businessLine}">
+                <h:selectOneMenu id="businessLine" label="Business Line"
+                                 value="#{personRegistryBean.person.businessLine}">
+                    <f:selectItem noSelectionOption="true" itemLabel="Select" />
                     <f:selectItems var="line" 
                                    itemLabel="#{line.description}"
-                                   itemValue="#{line.id}"
+                                   itemValue="#{line}"
                                    value="#{personRegistryBean.businessLines}" />
                 </h:selectOneMenu>
                 
                 <h:outputLabel/>
-                <h:commandButton value="Save"/>
+                <h:commandButton value="Save" actionListener="#{personRegistryBean.add}"/>
                 
             </h:panelGrid>
         </h:form>

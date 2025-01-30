@@ -1,5 +1,6 @@
 package com.github.edurbs.jsffinance.view.conversor;
 
+import com.sun.faces.util.MessageFactory;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -10,8 +11,8 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-@FacesConverter("LocalDateConversor")
-public class LocalDateConversor implements Converter {
+@FacesConverter("LocalDateConverter")
+public class LocalDateConverter implements Converter {
     
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
@@ -23,7 +24,9 @@ public class LocalDateConversor implements Converter {
         try {
             return LocalDate.parse(value, formatter);
         } catch (DateTimeParseException e) {
-            FacesMessage msg = new FacesMessage("Invalid date", "Date must be in dd/MM/yyyy format");
+            Object label = MessageFactory.getLabel(context, component);
+            String errorDescription = label + " is required.";
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid date", label + " must be in dd/MM/yyyy format");
             throw new ConverterException(msg);
         }
     }

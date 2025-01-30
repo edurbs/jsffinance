@@ -1,5 +1,6 @@
 package com.github.edurbs.jsffinance.domain;
 
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class BusinessLine {
+public class BusinessLine implements Serializable {
     
     @EqualsAndHashCode.Include
     private Long id;

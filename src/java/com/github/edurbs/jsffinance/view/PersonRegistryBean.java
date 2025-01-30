@@ -7,8 +7,10 @@ import com.github.edurbs.jsffinance.service.BusinessLineService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,7 +31,10 @@ public class PersonRegistryBean {
     }
     
     public void add(){
-        people.add(person);
+    people.add(person);
+        String msg = "Posted with sucess! Business Line: "+ person.getBusinessLine().getDescription();
+        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg);
+        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         person = new Person();
     }
     

@@ -2,7 +2,8 @@ package com.github.edurbs.jsffinance.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -34,6 +35,7 @@ public class Post implements Serializable{
     private Long id;
     
     @Enumerated(EnumType.STRING)
+    @Column(name="type")
     private PostType type;
     
     @ManyToOne
@@ -41,8 +43,15 @@ public class Post implements Serializable{
     private Person person;
     private String description;
     private BigDecimal amount;
-    private LocalDate dueDate;
+    
+    //@Convert(converter = LocalDatePersistenceConverter.class)
+    @Column(name = "due_date")
+    private Date dueDate;
+    
     private Boolean paid;
-    private LocalDate payDate;
+    
+    //@Convert(converter = LocalDatePersistenceConverter.class)
+    @Column(name = "pay_date")
+    private Date payDate;
     
 }

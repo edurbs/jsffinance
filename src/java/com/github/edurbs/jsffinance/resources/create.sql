@@ -31,4 +31,4 @@ ALTER TABLE jsffinance.person ADD email varchar(100) NULL;
 ALTER TABLE jsffinance.person ADD birthday DATE NULL;
 ALTER TABLE jsffinance.person ADD bussines_line varchar(100) NULL;
 ALTER TABLE jsffinance.person CHANGE bussines_line business_line varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
-
+ALTER TABLE `jsffinance`.`post` CHANGE COLUMN `typo` `type` VARCHAR(20) NOT NULL ;

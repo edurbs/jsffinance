@@ -70,9 +70,10 @@
                 <h:panelGroup>
                     <h:inputText value="#{postRegistryBean.post.dueDate}"
                         id="dueDate" size="12" label="Due Date"
-                        converter="LocalDateConverter" required="true"
+                         required="true"
                         >
-                        <f:validator validatorId="BusinessDayValidator"/>                        
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+<!--                        <f:validator validatorId="BusinessDayValidator"/>                        -->
                     </h:inputText>
                     <h:message for="dueDate" showSummary="true" showDetail="false"/>
                 </h:panelGroup>
@@ -91,9 +92,10 @@
                 <h:panelGroup rendered="#{postRegistryBean.post.paid}" >
                     <h:inputText value="#{postRegistryBean.post.payDate}"
                         id="payDate" size="12" label="Payment date"
-                        converter="LocalDateConverter"
+                        
                        
                         >
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
                         <f:validator validatorId="ConditionalRequiredValidator" />
                         <f:validator validatorId="BusinessDayValidator" />
                         <f:validator validatorId="PresentOrPastDateValidator" />

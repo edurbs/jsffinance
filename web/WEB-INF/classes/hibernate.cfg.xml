@@ -16,5 +16,6 @@
                 
                 <mapping class="com.github.edurbs.jsffinance.model.Person" />
                 <mapping class="com.github.edurbs.jsffinance.model.Post" />
+                <mapping class="com.github.edurbs.jsffinance.model.BusinessLine" />
 	</session-factory>
 </hibernate-configuration>

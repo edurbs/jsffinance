@@ -3,7 +3,9 @@ package com.github.edurbs.jsffinance.view;
 import com.github.edurbs.jsffinance.model.BusinessLine;
 import com.github.edurbs.jsffinance.model.Person;
 import com.github.edurbs.jsffinance.model.PersonType;
-import com.github.edurbs.jsffinance.service.BusinessLineService;
+import com.github.edurbs.jsffinance.persistence.RepositoryFactory;
+import com.github.edurbs.jsffinance.repository.BusinessLineRepository;
+import com.github.edurbs.jsffinance.service.BusinessLineUseCase;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -21,6 +23,7 @@ import lombok.Setter;
 @Setter
 public class PersonRegistryBean {
     
+    private RepositoryFactory repositoryFactory = new RepositoryFactory();
     private List<Person> people;
     private Person person;
 
@@ -43,7 +46,9 @@ public class PersonRegistryBean {
     }
     
     public List<BusinessLine> getBusinessLines(){
-        return new BusinessLineService().listAll();
+        BusinessLineRepository businessLineRepository = repositoryFactory.getBusinessLineRepository();
+        BusinessLineUseCase businessLineUseCase = new BusinessLineUseCase(businessLineRepository);        
+        return new BusinessLineUseCase(businessLineRepository).listAll();
     }
     
     public void isIndividual(boolean individual){

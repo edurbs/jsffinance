@@ -32,3 +32,28 @@ ALTER TABLE jsffinance.person ADD birthday DATE NULL;
 ALTER TABLE jsffinance.person ADD bussines_line varchar(100) NULL;
 ALTER TABLE jsffinance.person CHANGE bussines_line business_line varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
 ALTER TABLE `jsffinance`.`post` CHANGE COLUMN `typo` `type` VARCHAR(20) NOT NULL ;
+
+
+CREATE TABLE jsffinance.NewTable (
+	id INTEGER auto_increment NOT NULL,
+	description varchar(100) NOT NULL,
+	CONSTRAINT NewTable_PK PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=latin1
+COLLATE=latin1_swedish_ci;
+RENAME TABLE jsffinance.NewTable TO jsffinance.business_line;
+
+ALTER TABLE jsffinance.person DROP COLUMN business_line;
+ALTER TABLE jsffinance.person ADD business_line_id INTEGER NULL;
+ALTER TABLE jsffinance.person ADD CONSTRAINT person_business_line_FK FOREIGN KEY (business_line_id) REFERENCES jsffinance.business_line(id);
+
+--  Auto-generated SQL script #202501311426
+INSERT INTO jsffinance.business_line (id,description)
+	VALUES (1,'Frutas');
+INSERT INTO jsffinance.business_line (id,description)
+	VALUES (2,'Legumes');
+INSERT INTO jsffinance.business_line (id,description)
+	VALUES (3,'Verduras');
+INSERT INTO jsffinance.business_line (id,description)
+	VALUES (4,'Carnes');

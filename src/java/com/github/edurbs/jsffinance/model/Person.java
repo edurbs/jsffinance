@@ -8,6 +8,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -39,10 +41,9 @@ public class Person implements Serializable{
     private String email;
     private LocalDate birthday;
     
-//    @ManyToOne
-//    @JoinColumn(name = "business_line_id")
-    @Column(name = "business_line")
-    private String businessLine;
+    @ManyToOne
+    @JoinColumn(name = "business_line_id")    
+    private BusinessLine businessLine;
     
     public Person(Long id, String name){
         this.id = id;

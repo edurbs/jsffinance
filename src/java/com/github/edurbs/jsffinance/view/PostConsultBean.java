@@ -3,6 +3,8 @@ package com.github.edurbs.jsffinance.view;
 import com.github.edurbs.jsffinance.model.Post;
 import com.github.edurbs.jsffinance.persistence.RepositoryFactory;
 import com.github.edurbs.jsffinance.repository.PostRepository;
+import com.github.edurbs.jsffinance.service.PostUseCase;
+import com.github.edurbs.jsffinance.service.exception.BusinessException;
 import com.github.edurbs.jsffinance.view.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,23 +22,23 @@ public class PostConsultBean implements Serializable {
     private RepositoryFactory repositoryFactory = new RepositoryFactory();
     private List<Post> postings = new ArrayList<>();    
     private Post selectedPost;
-    
+        
     @PostConstruct
-    public void init(){
-        PostRepository postRepository= repositoryFactory.getPostRepository();        
+    public void init(){        
+        PostRepository postRepository = repositoryFactory.getPostRepository();
         postings = postRepository.listAll();
     }
     
-    public void delete(){
-        if(selectedPost.isPaid()){
-            FacesUtil.add(FacesMessage.SEVERITY_ERROR, "Post is paid, can't be deleted.");
-            return;
-        }
-        PostRepository postRepository= repositoryFactory.getPostRepository();
-        postRepository.delete(selectedPost);        
-        String msg = "Post deleted!";
-        init();
-        FacesUtil.add(FacesMessage.SEVERITY_INFO, msg);
+    public void delete(){        
+        PostRepository postRepository = repositoryFactory.getPostRepository();
+        PostUseCase postUseCase = new PostUseCase(postRepository);        
+        try {
+            postUseCase.delete(selectedPost);
+            init();
+            FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, "Post deleted!");
+        } catch (BusinessException e) {
+            FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, e.getMessage());
+        }        
     }
     
 }

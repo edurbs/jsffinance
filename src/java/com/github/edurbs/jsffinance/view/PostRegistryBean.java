@@ -6,6 +6,9 @@ import com.github.edurbs.jsffinance.model.PostType;
 import com.github.edurbs.jsffinance.persistence.RepositoryFactory;
 import com.github.edurbs.jsffinance.repository.PersonRepository;
 import com.github.edurbs.jsffinance.repository.PostRepository;
+import com.github.edurbs.jsffinance.service.PostUseCase;
+import com.github.edurbs.jsffinance.service.exception.BusinessException;
+import com.github.edurbs.jsffinance.view.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,19 +34,21 @@ public class PostRegistryBean implements Serializable {
     private Post post = new Post();
     
     @PostConstruct
-    public void init(){
+    public void init(){        
         PersonRepository personRepository = repositoryFactory.getPersonRepository();        
         people = personRepository.listAll();
     }
     
     public void add(){
-        PostRepository postRepository= repositoryFactory.getPostRepository();
-        postRepository.save(post);
-                
-        String msg = "Posted with success!";      
-        FacesContext.getCurrentInstance().addMessage(null, 
-                new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
-        post = new Post();
+        PostRepository postRepository = repositoryFactory.getPostRepository();
+        PostUseCase postUseCase = new PostUseCase(postRepository);        
+        try {
+            postUseCase.save(post);                
+            FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, "Posted with success!");
+            post = new Post();            
+        } catch (BusinessException e) {
+            FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, e.getMessage());
+        }
     }
     
     

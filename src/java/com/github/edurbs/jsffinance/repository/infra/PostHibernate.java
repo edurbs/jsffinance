@@ -5,6 +5,7 @@ import com.github.edurbs.jsffinance.repository.PostRepository;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 public class PostHibernate implements PostRepository{
     
@@ -35,6 +36,21 @@ public class PostHibernate implements PostRepository{
     @Override
     public void delete(Post post) {
         session.delete(post);
+    }
+
+    @Override
+    public Post equals(Post post) {
+        List<Post> posts = session.createCriteria(Post.class)
+                .add(Restrictions.eq("type", post.getType()))
+                .add(Restrictions.eq("person", post.getPerson()))
+                .add(Restrictions.ilike("description", post.getDescription()))
+                .add(Restrictions.eq("amount", post.getAmount()))
+                .add(Restrictions.eq("dueDate", post.getDueDate()))
+                .list();
+        if(posts.isEmpty()){
+            return null;
+        }
+        return posts.getFirst();
     }
 
 }

@@ -9,5 +9,6 @@ public interface PostRepository {
     public Post findById(Long id);
     public Post save(Post post);  
     public void delete(Post post);
+    public Post equals(Post post);
     
 }

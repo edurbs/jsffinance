@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class FacesUtil {
 
-    public static void add(FacesMessage.Severity severity, String message){
+    public static void addMessage(FacesMessage.Severity severity, String message){
         FacesContext.getCurrentInstance().addMessage(null, 
                 new FacesMessage(severity, message, message));
     }

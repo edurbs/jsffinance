@@ -48,7 +48,7 @@ public class Post implements Serializable{
     @Column(name = "due_date")
     private Date dueDate;
     
-    private Boolean paid;
+    private boolean paid;
     
     //@Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "pay_date")

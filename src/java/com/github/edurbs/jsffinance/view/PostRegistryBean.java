@@ -52,6 +52,7 @@ public class PostRegistryBean implements Serializable {
         String msg = "Posted with success!";      
         FacesContext.getCurrentInstance().addMessage(null, 
                 new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+        post = new Post();
     }
     
     

@@ -5,7 +5,10 @@ import com.github.edurbs.jsffinance.model.Person;
 import com.github.edurbs.jsffinance.model.PersonType;
 import com.github.edurbs.jsffinance.persistence.RepositoryFactory;
 import com.github.edurbs.jsffinance.repository.BusinessLineRepository;
+import com.github.edurbs.jsffinance.repository.PersonRepository;
 import com.github.edurbs.jsffinance.service.BusinessLineUseCase;
+import com.github.edurbs.jsffinance.service.PersonUseCase;
+import com.github.edurbs.jsffinance.view.util.FacesUtil;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -34,10 +37,12 @@ public class PersonRegistryBean {
     }
     
     public void add(){
-    people.add(person);
-        String msg = "Posted with sucess!" ;
-        FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg);
-        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+        
+        PersonRepository personRepository = repositoryFactory.getPersonRepository();
+        PersonUseCase personUseCase = new PersonUseCase(personRepository);
+        personUseCase.save(person);
+        
+        FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, "Posted with sucess!");
         person = new Person();
     }
     

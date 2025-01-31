@@ -50,7 +50,8 @@
                 <h:outputLabel value="Birthday" for="birthDay" rendered="#{personRegistryBean.individual}"/>
                 <h:panelGroup rendered="#{personRegistryBean.individual}" >
                     <h:inputText id="birthDay" value="#{personRegistryBean.person.birthday}" label="Birthday">
-                        <f:converter converterId="LocalDateConverter" for="birthDay" />
+                        <!-- <f:converter converterId="LocalDateConverter" for="birthDay" />-->
+                        <f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"/>
                         <f:attribute name="individual" value="#{personRegistryBean.individual}" />
                     </h:inputText>
                     <h:message for="birthDay" showSummary="false" showDetail="true" />

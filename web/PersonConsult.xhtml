@@ -12,10 +12,10 @@
     </h:head>
     <h:body>
         <h1>People</h1>
+        <h:button value="New" outcome="PersonRegistry"/>
         <h:form id="frm">
-            <h:commandButton value="New"/>
             <h:dataTable var="person" value="#{personConsultBean.people}" width="100%"
-                         styleClass="grid" headerClass="header" rowClasses="color-on, color-off" columnClasses="name, type, line-business, actions"
+                         styleClass="grid" headerClass="header" rowClasses="color-on, color-off" columnClasses="name, type, line-business, email, birthday,  actions"
                          >
                 <h:column>
                     <f:facet name="header">
@@ -30,12 +30,28 @@
                     </f:facet>
                     <h:outputText value="#{person.personType.description}"/>
                 </h:column>
+                                
+                <h:column>
+                    <f:facet name="header">
+                        Business Line
+                    </f:facet>
+                    <h:outputText value="#{person.businessLine.description}"/>
+                </h:column>
                 
                 <h:column>
                     <f:facet name="header">
-                        Line of business
+                        Email
+                    </f:facet>  
+                    <h:outputText value="#{person.email}" />                        
+                </h:column>
+                
+                <h:column>
+                    <f:facet name="header">
+                        Birthday
                     </f:facet>
-                    <h:outputText value="#{person.businessLine.description}"/>
+                    <h:outputText value="#{person.birthday}">
+                        <f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"/>
+                    </h:outputText>
                 </h:column>
                 
                 <h:column>

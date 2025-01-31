@@ -9,8 +9,18 @@ td.type {
 }
 
 td.name { 
-	width: 200px;
+	width: 100px;
+        text-align: left;
+}
 
+td.birthday { 
+	width: 50px;
+        text-align: left;
+}
+
+td.email { 
+	width: 100px;
+        text-align: left;
 }
 
 

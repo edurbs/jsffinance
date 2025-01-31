@@ -11,6 +11,7 @@ import java.io.Serializable;
 import org.hibernate.Session;
 
 public class RepositoryFactory implements Serializable {
+    
     public PersonRepository getPersonRepository(){
         return new PersonHibernate(getSession());
     }

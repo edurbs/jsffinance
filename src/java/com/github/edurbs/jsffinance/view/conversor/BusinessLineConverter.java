@@ -1,7 +1,8 @@
 package com.github.edurbs.jsffinance.view.conversor;
 
 import com.github.edurbs.jsffinance.model.BusinessLine;
-import com.github.edurbs.jsffinance.service.BusinessLineService;
+import com.github.edurbs.jsffinance.persistence.RepositoryFactory;
+import com.github.edurbs.jsffinance.repository.BusinessLineRepository;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -17,7 +18,8 @@ public class BusinessLineConverter implements Converter {
         }
         try{
             Long id = Long.valueOf(value);
-            return new BusinessLineService().findById(id);
+            BusinessLineRepository businessLineRepository = new RepositoryFactory().getBusinessLineRepository();
+            return businessLineRepository.findById(id);
         }catch (NumberFormatException e){
             return null;
         }        

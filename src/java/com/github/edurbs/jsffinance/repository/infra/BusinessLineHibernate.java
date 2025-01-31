@@ -19,4 +19,9 @@ public class BusinessLineHibernate implements BusinessLineRepository{
                 .list();
     }
 
+    @Override
+    public BusinessLine findById(Long id) {
+        return (BusinessLine) session.get(BusinessLine.class, id);
+    }
+
 }

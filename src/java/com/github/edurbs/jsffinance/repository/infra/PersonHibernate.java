@@ -26,4 +26,10 @@ public class PersonHibernate implements PersonRepository {
         return (Person) session.get(Person.class, id);    
     }
 
+    @Override
+    public Person save(Person person) {
+        return (Person) session.merge(person);
+
+    }
+
 }

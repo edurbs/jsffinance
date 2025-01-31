@@ -8,5 +8,6 @@ public interface PersonRepository {
     public List<Person> listAll();
     public Person findById(Long id);
     public Person save(Person person);
+    public void delete(Person person);
     
 }

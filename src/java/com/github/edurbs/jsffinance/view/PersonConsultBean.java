@@ -3,21 +3,40 @@ package com.github.edurbs.jsffinance.view;
 import com.github.edurbs.jsffinance.model.Person;
 import com.github.edurbs.jsffinance.persistence.RepositoryFactory;
 import com.github.edurbs.jsffinance.repository.PersonRepository;
+import com.github.edurbs.jsffinance.service.PersonUseCase;
+import com.github.edurbs.jsffinance.view.util.FacesUtil;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import lombok.Getter;
+import lombok.Setter;
 
 @ManagedBean
 @Getter
-public class PersonConsultBean {
+@Setter
+public class PersonConsultBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     
     private List<Person> people;
     private RepositoryFactory repositoryFactory = new RepositoryFactory();
+    private Person selectedPerson;
     
     @PostConstruct
     public void init(){
+        people = getPersonUseCase().listAll();
+    }
+    
+    public void delete(){
+        getPersonUseCase().delete(selectedPerson); 
+        init();
+        FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, "Person deleted!");
+    }
+    
+    private PersonUseCase getPersonUseCase() {
         PersonRepository personRepository = repositoryFactory.getPersonRepository();
-        people = personRepository.listAll();
+        return new PersonUseCase(personRepository);
     }
 }

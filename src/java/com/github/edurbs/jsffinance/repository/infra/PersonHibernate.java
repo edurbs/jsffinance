@@ -32,4 +32,9 @@ public class PersonHibernate implements PersonRepository {
 
     }
 
+    @Override
+    public void delete(Person person) {
+       session.delete(person);
+    }
+
 }

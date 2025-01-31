@@ -13,6 +13,9 @@
     <h:body>
         <h1>People</h1>
         <h:button value="New" outcome="PersonRegistry"/>
+        <h:messages showSummary="false" showDetail="true"
+                        styleClass="form-messages" errorClass="error" infoClass="info"
+                        />
         <h:form id="frm">
             <h:dataTable var="person" value="#{personConsultBean.people}" width="100%"
                          styleClass="grid" headerClass="header" rowClasses="color-on, color-off" columnClasses="name, type, line-business, email, birthday,  actions"
@@ -56,7 +59,10 @@
                 
                 <h:column>
                     <h:graphicImage value="/images/edit.png"/>
-                    <h:graphicImage value="/images/delete.png"/>
+                    <h:commandLink action="#{personConsultBean.delete}" >
+                        <h:graphicImage value="/images/delete.png"/>
+                        <f:setPropertyActionListener target="#{personConsultBean.selectedPerson}" value="#{person}"/>
+                    </h:commandLink>
                 </h:column>
                 
             </h:dataTable>

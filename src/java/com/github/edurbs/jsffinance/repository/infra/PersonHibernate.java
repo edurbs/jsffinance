@@ -2,19 +2,21 @@ package com.github.edurbs.jsffinance.repository.infra;
 
 import com.github.edurbs.jsffinance.model.Person;
 import com.github.edurbs.jsffinance.repository.PersonRepository;
+import com.github.edurbs.jsffinance.service.exception.BusinessException;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 
 public class PersonHibernate implements PersonRepository {
     
-    private Session session;
+    private final Session session;
     
     public PersonHibernate(Session session){
         this.session = session;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Person> listAll() {
         return session.createCriteria(Person.class)
                 .addOrder(Order.asc("name"))
@@ -33,8 +35,13 @@ public class PersonHibernate implements PersonRepository {
     }
 
     @Override
-    public void delete(Person person) {
-       session.delete(person);
+    public void delete(Person person) throws BusinessException {
+       
+        PostHibernate postHibernate = new PostHibernate(session);
+        if(postHibernate.isPersonInUse(person)){
+            throw new BusinessException("Person in use. Can't be deleted!");
+        }
+        session.delete(person);       
     }
 
 }

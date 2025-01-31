@@ -1,5 +1,6 @@
 package com.github.edurbs.jsffinance.repository.infra;
 
+import com.github.edurbs.jsffinance.model.Person;
 import com.github.edurbs.jsffinance.model.Post;
 import com.github.edurbs.jsffinance.repository.PostRepository;
 import java.util.List;
@@ -34,7 +35,7 @@ public class PostHibernate implements PostRepository{
     }
 
     @Override
-    public void delete(Post post) {
+    public void delete(Post post) {        
         session.delete(post);
     }
 
@@ -51,6 +52,17 @@ public class PostHibernate implements PostRepository{
             return null;
         }
         return posts.getFirst();
+    }
+    
+    public boolean isPersonInUse(Person person){
+        List<Post> posts = session.createCriteria(Post.class)
+                .add(Restrictions.eq("person", person))
+                .list();
+        if(posts.isEmpty()){
+            return false;
+        }
+        return true;
+        
     }
 
 }

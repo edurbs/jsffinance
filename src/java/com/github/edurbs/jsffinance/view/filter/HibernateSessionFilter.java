@@ -13,11 +13,6 @@ import org.hibernate.Transaction;
 
 @WebFilter(servletNames={"Faces Servlet"}) // from web.xml
 public class HibernateSessionFilter implements Filter {
-//
-//    @Override
-//    public void init(FilterConfig filterConfig) throws ServletException {
-//        
-//    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -37,10 +32,5 @@ public class HibernateSessionFilter implements Filter {
             session.close();
         }
     }
-
-//    @Override
-//    public void destroy() {
-//        
-//    }
 
 }

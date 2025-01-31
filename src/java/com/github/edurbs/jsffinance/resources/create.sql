@@ -57,3 +57,21 @@ INSERT INTO jsffinance.business_line (id,description)
 	VALUES (3,'Verduras');
 INSERT INTO jsffinance.business_line (id,description)
 	VALUES (4,'Carnes');
+
+--  Auto-generated SQL script #202501311439
+UPDATE jsffinance.person
+	SET birthday='2001/12/30',person_type='INDIVIDUAL',email='asd@asd.com',business_line_id=1
+	WHERE id=1;
+UPDATE jsffinance.person
+	SET birthday='2001/12/30',person_type='COMPANY',email='asd@asd.com',business_line_id=2
+	WHERE id=2;
+UPDATE jsffinance.person
+	SET birthday='2001/12/30',person_type='COMPANY',email='asd@asd.com',business_line_id=3
+	WHERE id=3;
+UPDATE jsffinance.person
+	SET birthday='2001/12/30',person_type='COMPANY',email='asd@asd.com',business_line_id=4
+	WHERE id=4;
+UPDATE jsffinance.person
+	SET birthday='2001/12/30',person_type='COMPANY',email='asd@asd.com',business_line_id=1
+	WHERE id=5;
+

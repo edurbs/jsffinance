@@ -1,7 +1,7 @@
 package com.github.edurbs.jsffinance.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -39,7 +39,7 @@ public class Person implements Serializable{
     private PersonType personType;
     
     private String email;
-    private LocalDate birthday;
+    private Date birthday;
     
     @ManyToOne
     @JoinColumn(name = "business_line_id")    

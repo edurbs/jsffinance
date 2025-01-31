@@ -1,6 +1,8 @@
 package com.github.edurbs.jsffinance.view;
 
-import java.util.ArrayList;
+import com.github.edurbs.jsffinance.model.Person;
+import com.github.edurbs.jsffinance.persistence.RepositoryFactory;
+import com.github.edurbs.jsffinance.repository.PersonRepository;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -10,12 +12,12 @@ import lombok.Getter;
 @Getter
 public class PersonConsultBean {
     
-    private List<String> people = new ArrayList<>();
+    private List<Person> people;
+    private RepositoryFactory repositoryFactory = new RepositoryFactory();
     
     @PostConstruct
     public void init(){
-        for (int i = 0; i < 20; i++) {
-            people.add("");
-        }
+        PersonRepository personRepository = repositoryFactory.getPersonRepository();
+        people = personRepository.listAll();
     }
 }

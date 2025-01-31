@@ -21,21 +21,21 @@
                     <f:facet name="header">
                         Name
                     </f:facet>
-                    <h:outputText value="Escola Neca Quirino da Silva"/>
+                    <h:outputText value="#{person.name}"/>
                 </h:column>
                 
                 <h:column>
                     <f:facet name="header">
                         Type
                     </f:facet>
-                    <h:outputText value="Jurídica"/>
+                    <h:outputText value="#{person.personType.description}"/>
                 </h:column>
                 
                 <h:column>
                     <f:facet name="header">
                         Line of business
                     </f:facet>
-                    <h:outputText value="Educação"/>
+                    <h:outputText value="#{person.businessLine.description}"/>
                 </h:column>
                 
                 <h:column>

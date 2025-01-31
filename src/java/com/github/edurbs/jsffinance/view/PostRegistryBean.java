@@ -3,7 +3,9 @@ package com.github.edurbs.jsffinance.view;
 import com.github.edurbs.jsffinance.model.Person;
 import com.github.edurbs.jsffinance.model.Post;
 import com.github.edurbs.jsffinance.model.PostType;
-import com.github.edurbs.jsffinance.view.util.FacesUtil;
+import com.github.edurbs.jsffinance.persistence.RepositoryFactory;
+import com.github.edurbs.jsffinance.repository.PersonRepository;
+import com.github.edurbs.jsffinance.repository.PostRepository;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +17,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
 
 @ManagedBean
 @ViewScoped
@@ -25,23 +25,20 @@ import org.hibernate.criterion.Order;
 public class PostRegistryBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+    private RepositoryFactory repositoryFactory = new RepositoryFactory();
     private List<Post> posts = new ArrayList<>();
     private List<Person> people;
     private Post post = new Post();
     
     @PostConstruct
     public void init(){
-        Session session = (Session) FacesUtil.getRequestAttribute("session");
-        
-        people = session.createCriteria(Person.class)
-                .addOrder(Order.asc("name"))
-                .list();        
+        PersonRepository personRepository = repositoryFactory.getPersonRepository();        
+        people = personRepository.listAll();
     }
     
-    public void add(){        
-        Session session = (Session) FacesUtil.getRequestAttribute("session");
-        session.merge(post);
+    public void add(){
+        PostRepository postRepository= repositoryFactory.getPostRepository();
+        postRepository.save(post);
                 
         String msg = "Posted with success!";      
         FacesContext.getCurrentInstance().addMessage(null, 

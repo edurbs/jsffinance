@@ -3,7 +3,7 @@ package com.github.edurbs.jsffinance.view;
 import com.github.edurbs.jsffinance.model.Person;
 import com.github.edurbs.jsffinance.model.Post;
 import com.github.edurbs.jsffinance.model.PostType;
-import com.github.edurbs.jsffinance.persistence.HibernateUtil;
+import com.github.edurbs.jsffinance.view.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,6 @@ import javax.faces.event.ValueChangeEvent;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 
 @ManagedBean
@@ -33,22 +32,17 @@ public class PostRegistryBean implements Serializable {
     
     @PostConstruct
     public void init(){
-        Session session = HibernateUtil.getSession();
+        Session session = (Session) FacesUtil.getRequestAttribute("session");
         
         people = session.createCriteria(Person.class)
                 .addOrder(Order.asc("name"))
-                .list();
-        
-        session.close();
+                .list();        
     }
     
     public void add(){        
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        Session session = (Session) FacesUtil.getRequestAttribute("session");
         session.merge(post);
-        transaction.commit();
-        session.close();                
-        
+                
         String msg = "Posted with success!";      
         FacesContext.getCurrentInstance().addMessage(null, 
                 new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));

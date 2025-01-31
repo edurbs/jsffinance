@@ -1,8 +1,7 @@
 package com.github.edurbs.jsffinance.view;
 
 import com.github.edurbs.jsffinance.model.Post;
-import com.github.edurbs.jsffinance.persistence.HibernateUtil;
-import com.github.edurbs.jsffinance.view.message.FacesMessageUtil;
+import com.github.edurbs.jsffinance.view.util.FacesUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,6 @@ import javax.faces.bean.ManagedBean;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 
 @ManagedBean
@@ -25,28 +23,23 @@ public class PostConsultBean implements Serializable {
     
     @PostConstruct
     public void init(){
-        Session session = HibernateUtil.getSession();
+        Session session = (Session) FacesUtil.getRequestAttribute("session");
         
         postings = session.createCriteria(Post.class)
                 .addOrder(Order.asc("dueDate"))
                 .list();
-        
-        session.close();                
     }
     
     public void delete(){
         if(selectedPost.isPaid()){
-            FacesMessageUtil.add(FacesMessage.SEVERITY_ERROR, "Post is paid, can't be deleted.");
+            FacesUtil.add(FacesMessage.SEVERITY_ERROR, "Post is paid, can't be deleted.");
             return;
         }
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(selectedPost);
-        transaction.commit();
-        session.close();
+        Session session = (Session) FacesUtil.getRequestAttribute("session");
+        session.delete(selectedPost);        
         String msg = "Post deleted!";
         init();
-        FacesMessageUtil.add(FacesMessage.SEVERITY_INFO, msg);
+        FacesUtil.add(FacesMessage.SEVERITY_INFO, msg);
     }
     
 }

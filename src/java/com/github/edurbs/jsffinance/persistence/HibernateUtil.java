@@ -10,37 +10,7 @@ public class HibernateUtil {
     
     static {
         try {
-            //Configuration configuration = new Configuration();
-            
-            //ServiceRegistryBuilder registryBuilder = new ServiceRegistryBuilder();
-             //       .applySettings(configuration.getProperties()).buildServiceRegistry();
-            
-            //SESSION_FACTORY = configuration.buildSessionFactory(serviceRegistry);
-//              SESSION_FACTORY = configuration.buildSessionFactory();
-            // Observe que eu estou passando o caminho onde esta o meu arquivo de propriedades
-            //ServiceRegistry serviceRegistry = registryBuilder.loadProperties("hibernate.properties").buildServiceRegistry();  
-
-            // Agora eu estou passando o caminho do arquivo de configuração.
-            //SESSION_FACTORY = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory(serviceRegistry); 
-            
-//            Configuration cfg = new Configuration()
-//                .addClass(com.github.edurbs.jsffinance.model.Person.class)
-//                .addClass(com.github.edurbs.jsffinance.model.Post.class)                
-//                .setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver")
-//                .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect")
-//                .setProperty("hibernate.connection.url", "jdbc:mysql://localhost:55000/jsffinance?useSSL=false")
-//                .setProperty("hibernate.connection.username", "root")
-//                .setProperty("hibernate.connection.password", "senha")
-//                .setProperty("show_sql", "true")
-//                .setProperty("format_sql", "true");           
-//            
-//            
-//            SESSION_FACTORY = cfg.buildSessionFactory();
-            
-            
-            
-            SESSION_FACTORY = new Configuration().configure().buildSessionFactory();            
-            
+            SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
             ex.printStackTrace();
             throw new ExceptionInInitializerError(ex);

@@ -51,7 +51,7 @@ public class PostHibernate implements PostRepository{
         if(posts.isEmpty()){
             return null;
         }
-        return posts.getFirst();
+        return posts.get(0);
     }
     
     public boolean isPersonInUse(Person person){

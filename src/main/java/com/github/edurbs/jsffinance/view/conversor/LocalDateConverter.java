@@ -18,7 +18,7 @@ public class LocalDateConverter implements Converter {
     
     @Override    
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        if(value==null || value.isBlank()) {
+        if(value==null || value.isEmpty()) {
             return null;
         }
         try {

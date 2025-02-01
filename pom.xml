@@ -103,10 +103,10 @@
                 <version>3.3.2</version>
                 <configuration>
                     <attachClasses>true</attachClasses>
-                    <webXml>web/WEB-INF/web.xml</webXml>
+                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
                     <webResources>
                         <resource>
-                            <directory>web/resources</directory>
+                            <directory>src/main/webapp/resources</directory>
                             <filtering>true</filtering>
                         </resource>
                     </webResources>

@@ -23,7 +23,7 @@
                         styleClass="form-messages" errorClass="error" infoClass="info"
                         />
             
-            <h:panelGrid columns="2" 
+            <h:panelGrid id="panelGrid" columns="2" 
                          styleClass="form-grid"
                          columnClasses="label, field"
                          >
@@ -85,10 +85,9 @@
                 <h:outputLabel/>
                 <h:panelGroup>
                     <h:selectBooleanCheckbox value="#{postRegistryBean.post.paid}" id="paidCheckbox"
-                                             immediate="true"
-                                             valueChangeListener="#{postRegistryBean.onIsPaidChange}"
-                                             onchange="submit();"
-                                             />
+                        immediate="true"
+                        valueChangeListener="#{postRegistryBean.onIsPaidChange}"
+                        onchange="jsf.ajax.request(this, event, {execute: '@form', render: 'frm:panelGrid'})"/>
                     <h:outputLabel value="Paid" for="paidCheckbox"/>
                 </h:panelGroup>
                 
@@ -110,7 +109,9 @@
                 </h:panelGroup>
                 
                 <h:outputLabel />
-                <h:commandButton value="Save" action="#{postRegistryBean.save}"/>                    
+                <h:commandButton value="Save" action="#{postRegistryBean.save}">
+                    <f:ajax execute="@form" render="@all" />
+                </h:commandButton>                    
                 
             </h:panelGrid>
         </h:form>

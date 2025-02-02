@@ -87,6 +87,7 @@
                     <h:commandLink action="#{postConsultBean.delete}">
                         <h:graphicImage value="/images/delete.png"/>
                         <f:setPropertyActionListener target="#{postConsultBean.selectedPost}" value="#{post}"/>
+                        <f:ajax render="@form"/>
                     </h:commandLink>
                 </h:column>
                 

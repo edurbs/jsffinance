@@ -25,7 +25,7 @@ import lombok.Setter;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "post")
-public class Post implements Serializable{
+public class Post implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 1L;
     
@@ -53,5 +53,10 @@ public class Post implements Serializable{
     //@Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "pay_date")
     private Date payDate;
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
     
 }

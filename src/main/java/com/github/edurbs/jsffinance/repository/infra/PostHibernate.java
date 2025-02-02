@@ -17,10 +17,14 @@ public class PostHibernate implements PostRepository{
     }
 
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Post> listAll() {
         return session.createCriteria(Post.class)
                 .addOrder(Order.asc("dueDate"))
+                .addOrder(Order.asc("person"))
+                .addOrder(Order.asc("description"))
+                .addOrder(Order.asc("amount"))
                 .list();   
     }
 
@@ -40,7 +44,8 @@ public class PostHibernate implements PostRepository{
     }
 
     @Override
-    public Post equals(Post post) {
+    public Post samePost(Post post) {
+        @SuppressWarnings("unchecked")
         List<Post> posts = session.createCriteria(Post.class)
                 .add(Restrictions.eq("type", post.getType()))
                 .add(Restrictions.eq("person", post.getPerson()))
@@ -54,6 +59,7 @@ public class PostHibernate implements PostRepository{
         return posts.get(0);
     }
     
+    @SuppressWarnings("unchecked")
     public boolean isPersonInUse(Person person){
         List<Post> posts = session.createCriteria(Post.class)
                 .add(Restrictions.eq("person", person))

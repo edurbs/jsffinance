@@ -32,6 +32,7 @@ public class PostRegistryBean implements Serializable {
     private List<Post> posts = new ArrayList<>();
     private List<Person> people;
     private Post post = new Post();
+    private String pageTitle;
     
     @PostConstruct
     public void init(){        
@@ -39,7 +40,7 @@ public class PostRegistryBean implements Serializable {
         people = personRepository.listAll();
     }
     
-    public void add(){
+    public void save(){
         PostRepository postRepository = repositoryFactory.getPostRepository();
         PostUseCase postUseCase = new PostUseCase(postRepository);        
         try {
@@ -50,7 +51,18 @@ public class PostRegistryBean implements Serializable {
             FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, e.getMessage());
         }
     }
-    
+
+    public void setPost(Post post) throws CloneNotSupportedException{
+        if(post == null){
+            this.post = new Post();
+        }else{
+            this.post= (Post) post.clone();
+        }
+    }
+
+    public String getPageTitle(){
+        return post.getId() == null ? "New post" : "Edit post";
+    }
     
     public PostType[] getPostTypes(){
         return PostType.values();

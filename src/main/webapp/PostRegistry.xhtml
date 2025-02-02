@@ -3,13 +3,18 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"          
       xmlns:f="http://java.sun.com/jsf/core">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{postRegistryBean.post}" />
+    </f:metadata>  
+
     <h:head>
-        <title>Posting Registry</title>
+        <title>#{postRegistryBean.pageTitle}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet library="css" name="system.css"/>
     </h:head>
     <h:body>
-        <h1>New post</h1>
+        <h1>#{postRegistryBean.pageTitle}</h1>
         <h:form id="frm">
             <h:button value="New" outcome="PostRegistry" />
             <h:button value="Consult" outcome="PostConsult" />
@@ -105,7 +110,7 @@
                 </h:panelGroup>
                 
                 <h:outputLabel />
-                <h:commandButton value="Post" action="#{postRegistryBean.add}"/>                    
+                <h:commandButton value="Save" action="#{postRegistryBean.save}"/>                    
                 
             </h:panelGrid>
         </h:form>

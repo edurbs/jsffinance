@@ -30,8 +30,7 @@ public class PersonConverter implements Converter{
         if(value==null){
             return null;
         }
-        String r = ((Person) value).getId().toString();
-        return r;
+        return ((Person) value).getId().toString();
     }
 
 }

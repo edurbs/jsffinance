@@ -25,7 +25,7 @@ public class PostUseCase {
     }
 
     private boolean existsPostEqual(Post post) {
-        Post postEqual = postRepository.equals(post);
+        Post postEqual = postRepository.samePost(post);
         if(postEqual!=null && !postEqual.equals(post)){
             return true;
         }        

@@ -24,7 +24,7 @@ import lombok.Setter;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "person")
-public class Person implements Serializable{
+public class Person implements Serializable, Cloneable {
 
     private static final long serialVersionUID = 1L;
 
@@ -48,5 +48,10 @@ public class Person implements Serializable{
     public Person(Long id, String name){
         this.id = id;
         this.name = name;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

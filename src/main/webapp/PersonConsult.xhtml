@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-          
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Person consult</title>
@@ -58,10 +57,15 @@
                 </h:column>
                 
                 <h:column>
-                    <h:graphicImage value="/images/edit.png"/>
+                    <h:link outcome="PersonRegistry"> 
+                        <h:graphicImage value="/images/edit.png"/>
+                        <f:param name="id" value="#{person.id}" />
+                    </h:link>
+
                     <h:commandLink action="#{personConsultBean.delete}" >
                         <h:graphicImage value="/images/delete.png"/>
                         <f:setPropertyActionListener target="#{personConsultBean.selectedPerson}" value="#{person}"/>
+                        <f:ajax render="@form" />
                     </h:commandLink>
                 </h:column>
                 

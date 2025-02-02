@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-
       xmlns:f="http://java.sun.com/jsf/core">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{personRegistryBean.person}" />
+    </f:metadata>  
     <h:head>
         <title>Person registry</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -33,10 +36,11 @@
                 <h:selectOneRadio value="#{personRegistryBean.person.personType}" label="Person Type" required="true" id="personTypeRadio"
                                   immediate="true"
                                   valueChangeListener="#{personRegistryBean.onPersonTypeChange}"                                  
-                                  onchange="submit();" >
+                                   >
                     <f:selectItems var="type" value="#{personRegistryBean.personTypes}"
                                    itemLabel="#{type.description}" 
                                    itemValue="#{type}" />
+                    <f:ajax render="@form"/>
                 </h:selectOneRadio>
 
                 <h:outputLabel value="E-mail" for="email"/>

@@ -45,6 +45,13 @@ public class PersonRegistryBean {
         FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, "Posted with sucess!");
         person = new Person();
     }
+
+    public void setPerson(Person person) throws CloneNotSupportedException{
+        if(person==null){
+            return;
+        }
+        this.person = (Person) person.clone();
+    }
     
     public PersonType[] getPersonTypes(){
         return PersonType.values();

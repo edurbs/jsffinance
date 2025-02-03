@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:my="http://java.sun.com/jsf/composite/mycomponents">
     <h:head>
         <title>Person consult</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -51,9 +52,7 @@
                     <f:facet name="header">
                         Birthday
                     </f:facet>
-                    <h:outputText value="#{person.birthday}">
-                        <f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"/>
-                    </h:outputText>
+                    <my:outputDate value="#{person.birthday}" />
                 </h:column>
                 
                 <h:column>

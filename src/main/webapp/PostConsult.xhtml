@@ -54,18 +54,14 @@
                     <f:facet name="header">
                         Due Date
                     </f:facet>
-                    <h:outputText value="#{post.dueDate}">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:outputText>
+                    <my:outputDate value="#{post.dueDate}" />
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
                         Payment Date
                     </f:facet>
-                    <h:outputText value="#{post.payDate}">
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                    </h:outputText>
+                    <my:outputDate value="#{post.payDate}" />
                 </h:column>
 
                 <h:column>

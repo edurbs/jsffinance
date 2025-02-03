@@ -1,120 +1,118 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"          
-      xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/template/LayoutDefault.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="title">#{postRegistryBean.pageTitle}</ui:define>
+
+    <ui:define name="content">    
 
     <f:metadata>
         <f:viewParam name="id" value="#{postRegistryBean.post}" />
     </f:metadata>  
 
-    <h:head>
-        <title>#{postRegistryBean.pageTitle}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet library="css" name="system.css"/>
-    </h:head>
-    <h:body>
-        <h1>#{postRegistryBean.pageTitle}</h1>
-        <h:form id="frm">
-            <h:button value="New" outcome="PostRegistry" />
-            <h:button value="Consult" outcome="PostConsult" />
+    <h1>#{postRegistryBean.pageTitle}</h1>
+
+    <h:form id="frm">
+        <h:button value="New" outcome="PostRegistry" />
+        <h:button value="Consult" outcome="PostConsult" />
+        
+        <h:messages showSummary="false" showDetail="true"
+                    styleClass="form-messages" errorClass="error" infoClass="info"
+                    />
+        
+        <h:panelGrid id="panelGrid" columns="2" 
+                     styleClass="form-grid"
+                     columnClasses="label, field"
+                     >
             
-            <h:messages showSummary="false" showDetail="true"
-                        styleClass="form-messages" errorClass="error" infoClass="info"
-                        />
+            <h:outputLabel value="Type"/>
+            <h:selectOneRadio value="#{postRegistryBean.post.type}" required="true" label="Post type">
+                <f:selectItems value="#{postRegistryBean.postTypes}" 
+                               var="postType"
+                               itemLabel="#{postType.description}"
+                               itemValue="#{postType}"
+                               />
+                
+            </h:selectOneRadio>
             
-            <h:panelGrid id="panelGrid" columns="2" 
-                         styleClass="form-grid"
-                         columnClasses="label, field"
-                         >
-                
-                <h:outputLabel value="Type"/>
-                <h:selectOneRadio value="#{postRegistryBean.post.type}" required="true" label="Post type">
-                    <f:selectItems value="#{postRegistryBean.postTypes}" 
-                                   var="postType"
-                                   itemLabel="#{postType.description}"
-                                   itemValue="#{postType}"
-                                   />
-                    
-                </h:selectOneRadio>
-                
-                <h:outputLabel value="Person"/>
-                <h:selectOneMenu value="#{postRegistryBean.post.person}" label="Person" required="true">
-                    <f:selectItem itemLabel="Select" noSelectionOption="true"/>
-                    <f:selectItems value="#{postRegistryBean.people}"
-                                   var="person" itemValue="#{person}"
-                                   itemLabel="#{person.name}"/>
-                </h:selectOneMenu>
-                
-                <h:outputLabel value="Description" for="description"/>
-                <h:panelGroup>
-                    <h:inputText value="#{postRegistryBean.post.description}" 
-                                 id="description" size="30" 
-                                 label="Description" 
-                                 required="true"
-                                 requiredMessage="Type a description!"
-                                 validatorMessage="Description is too small! Must be bigger then 5 chars."
-                                 >
-                        <f:validateLength minimum="5"/>
-                    </h:inputText>
-                    <h:message for="description" showSummary="true" showDetail="false"/>
-                </h:panelGroup>
-                
-                <h:outputLabel value="Amount" for="amount"/>
-                <h:panelGroup>
-                    <h:inputText value="#{postRegistryBean.post.amount}"
-                        id="amount" size="12" label="Amount" required="true">
-                        <f:validateDoubleRange minimum="0"/>
-                        <f:convertNumber maxFractionDigits="2" minFractionDigits="2" locale="pt_BR"/>
-                    </h:inputText>
-                    <h:message for="amount" showSummary="true" showDetail="false" /> 
-                </h:panelGroup>
-                
-                <h:outputLabel value="Due Date" for="dueDate"/>
-                <h:panelGroup>
-                    <h:inputText value="#{postRegistryBean.post.dueDate}"
-                        id="dueDate" size="12" label="Due Date"
-                         required="true"
-                        >
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
+            <h:outputLabel value="Person"/>
+            <h:selectOneMenu value="#{postRegistryBean.post.person}" label="Person" required="true">
+                <f:selectItem itemLabel="Select" noSelectionOption="true"/>
+                <f:selectItems value="#{postRegistryBean.people}"
+                               var="person" itemValue="#{person}"
+                               itemLabel="#{person.name}"/>
+            </h:selectOneMenu>
+            
+            <h:outputLabel value="Description" for="description"/>
+            <h:panelGroup>
+                <h:inputText value="#{postRegistryBean.post.description}" 
+                             id="description" size="30" 
+                             label="Description" 
+                             required="true"
+                             requiredMessage="Type a description!"
+                             validatorMessage="Description is too small! Must be bigger then 5 chars."
+                             >
+                    <f:validateLength minimum="5"/>
+                </h:inputText>
+                <h:message for="description" showSummary="true" showDetail="false"/>
+            </h:panelGroup>
+            
+            <h:outputLabel value="Amount" for="amount"/>
+            <h:panelGroup>
+                <h:inputText value="#{postRegistryBean.post.amount}"
+                    id="amount" size="12" label="Amount" required="true">
+                    <f:validateDoubleRange minimum="0"/>
+                    <f:convertNumber maxFractionDigits="2" minFractionDigits="2" locale="pt_BR"/>
+                </h:inputText>
+                <h:message for="amount" showSummary="true" showDetail="false" /> 
+            </h:panelGroup>
+            
+            <h:outputLabel value="Due Date" for="dueDate"/>
+            <h:panelGroup>
+                <h:inputText value="#{postRegistryBean.post.dueDate}"
+                    id="dueDate" size="12" label="Due Date"
+                     required="true"
+                    >
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
 <!--                        <f:validator validatorId="BusinessDayValidator"/>                        -->
-                    </h:inputText>
-                    <h:message for="dueDate" showSummary="true" showDetail="false"/>
-                </h:panelGroup>
-                
-                <h:outputLabel/>
-                <h:panelGroup>
-                    <h:selectBooleanCheckbox value="#{postRegistryBean.post.paid}" id="paidCheckbox"
-                        immediate="true"
-                        valueChangeListener="#{postRegistryBean.onIsPaidChange}"
-                        onchange="jsf.ajax.request(this, event, {execute: '@form', render: 'frm:panelGrid'})"/>
-                    <h:outputLabel value="Paid" for="paidCheckbox"/>
-                </h:panelGroup>
-                
-                <h:outputLabel value="Payment date" for="payDate" rendered="#{postRegistryBean.post.paid}"/>
-                <h:panelGroup rendered="#{postRegistryBean.post.paid}" >
-                    <h:inputText value="#{postRegistryBean.post.payDate}"
-                        id="payDate" size="12" label="Payment date"
-                        
-                       
-                        >
-                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                        <f:validator validatorId="ConditionalRequiredValidator" />
+                </h:inputText>
+                <h:message for="dueDate" showSummary="true" showDetail="false"/>
+            </h:panelGroup>
+            
+            <h:outputLabel/>
+            <h:panelGroup>
+                <h:selectBooleanCheckbox value="#{postRegistryBean.post.paid}" id="paidCheckbox"
+                    immediate="true"
+                    valueChangeListener="#{postRegistryBean.onIsPaidChange}"
+                    onchange="jsf.ajax.request(this, event, {execute: '@form', render: 'frm:panelGrid'})"/>
+                <h:outputLabel value="Paid" for="paidCheckbox"/>
+            </h:panelGroup>
+            
+            <h:outputLabel value="Payment date" for="payDate" rendered="#{postRegistryBean.post.paid}"/>
+            <h:panelGroup rendered="#{postRegistryBean.post.paid}" >
+                <h:inputText value="#{postRegistryBean.post.payDate}"
+                    id="payDate" size="12" label="Payment date"
+                    
+                   
+                    >
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                    <f:validator validatorId="ConditionalRequiredValidator" />
 <!--                        <f:validator validatorId="BusinessDayValidator" />-->
 <!--                        <f:validator validatorId="PresentOrPastDateValidator" />-->
-                        <f:attribute name="isPaid" value="#{postRegistryBean.post.paid}" />
-                        
-                    </h:inputText>
-                    <h:message for="payDate" showSummary="true" showDetail="false"/>
-                </h:panelGroup>
-                
-                <h:outputLabel />
-                <h:commandButton value="Save" action="#{postRegistryBean.save}">
-                    <f:ajax execute="@form" render="@all" />
-                </h:commandButton>                    
-                
-            </h:panelGrid>
-        </h:form>
-        
-    </h:body>
-</html>
+                    <f:attribute name="isPaid" value="#{postRegistryBean.post.paid}" />
+                    
+                </h:inputText>
+                <h:message for="payDate" showSummary="true" showDetail="false"/>
+            </h:panelGroup>
+            
+            <h:outputLabel />
+            <h:commandButton value="Save" action="#{postRegistryBean.save}">
+                <f:ajax execute="@form" render="@all" />
+            </h:commandButton>                    
+            
+        </h:panelGrid>
+    </h:form>
+
+
+    </ui:define>
+</ui:composition>

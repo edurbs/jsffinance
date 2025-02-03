@@ -9,6 +9,8 @@ import com.github.edurbs.jsffinance.repository.PersonRepository;
 import com.github.edurbs.jsffinance.service.BusinessLineUseCase;
 import com.github.edurbs.jsffinance.service.PersonUseCase;
 import com.github.edurbs.jsffinance.view.util.FacesUtil;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -24,7 +26,7 @@ import lombok.Setter;
 @ViewScoped
 @Getter
 @Setter
-public class PersonRegistryBean {
+public class PersonRegistryBean implements Serializable {
     
     private RepositoryFactory repositoryFactory = new RepositoryFactory();
     private List<Person> people;

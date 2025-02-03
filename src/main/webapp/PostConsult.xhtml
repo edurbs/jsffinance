@@ -1,98 +1,96 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"          
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>Posting</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet library="css" name="posting-consult.css" />
-        <h:outputStylesheet library="css" name="system.css" />
-    </h:head>
-    <h:body>
-        <h1>Posting</h1>
-        
-        <h:button value="New post" outcome="PostRegistry"/>
-        <h:messages showSummary="false" showDetail="true"
-                        styleClass="form-messages" errorClass="error" infoClass="info"
-                        />
-        
+<ui:composition template="/template/LayoutDefault.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="title">Post Consult</ui:define>
+
+    <ui:define name="content">
+        <h:outputStylesheet library="css" name="post-consult.css"/>
+
+        <h1>Posts</h1>
+
+
         <h:form id="frm">
-            
-            <h:dataTable var="post" value="#{postConsultBean.postings}"  width="100%"
-                         styleClass="grid" headerClass="header" rowClasses="color-on, color-off"
-                         columnClasses="type, person, description, amount, dueDate, payment, status, actions"
-                         >
+            <h:button value="New post" outcome="PostRegistry" />
+            <h:messages showSummary="false" showDetail="true" styleClass="form-messages" errorClass="error"
+                infoClass="info" />
+
+
+            <h:dataTable var="post" value="#{postConsultBean.postings}" width="100%" styleClass="grid"
+                headerClass="header" rowClasses="color-on, color-off"
+                columnClasses="type, person, description, amount, dueDate, payment, status, actions">
                 <h:column>
-                    <h:graphicImage value="/images/expense.png" rendered="#{post.type eq 'EXPENSE'}"/>
-                    <h:graphicImage value="/images/income.png" rendered="#{post.type eq 'INCOME'}"/>
+                    <h:graphicImage value="/images/expense.png" rendered="#{post.type eq 'EXPENSE'}" />
+                    <h:graphicImage value="/images/income.png" rendered="#{post.type eq 'INCOME'}" />
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         Person
                     </f:facet>
-                    <h:outputText value="#{post.person.name}"/>
+                    <h:outputText value="#{post.person.name}" />
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         Description
                     </f:facet>
-                    <h:outputText value="#{post.description}"/>
+                    <h:outputText value="#{post.description}" />
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         Amount
                     </f:facet>
-                    <h:outputText value="#{post.amount}" 
-                                  styleClass="#{post.type.toString().toLowerCase()}">
-                        <f:convertNumber locale="pt_BR" currencySymbol="R$" type="currency"/>
+                    <h:outputText value="#{post.amount}" styleClass="#{post.type.toString().toLowerCase()}">
+                        <f:convertNumber locale="pt_BR" currencySymbol="R$" type="currency" />
                     </h:outputText>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         Due Date
                     </f:facet>
                     <h:outputText value="#{post.dueDate}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
                     </h:outputText>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         Payment Date
                     </f:facet>
                     <h:outputText value="#{post.payDate}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
                     </h:outputText>
                 </h:column>
-                
+
                 <h:column>
                     <f:facet name="header">
                         Status
                     </f:facet>
-                    <h:outputText value="Paid" rendered="#{post.paid}"/>
-                    <h:outputText value="Open" rendered="#{not post.paid}"/>
+                    <h:outputText value="Paid" rendered="#{post.paid}" />
+                    <h:outputText value="Open" rendered="#{not post.paid}" />
                 </h:column>
-                
+
                 <h:column>
                     <h:link outcome="PostRegistry">
-                        <h:graphicImage value="/images/edit.png"/>
+                        <h:graphicImage value="/images/edit.png" />
                         <f:param name="id" value="#{post.id}" />
                     </h:link>
 
                     <h:commandLink action="#{postConsultBean.delete}">
-                        <h:graphicImage value="/images/delete.png"/>
-                        <f:setPropertyActionListener target="#{postConsultBean.selectedPost}" value="#{post}"/>
-                        <f:ajax render="@form"/>
+                        <h:graphicImage value="/images/delete.png" />
+                        <f:setPropertyActionListener target="#{postConsultBean.selectedPost}" value="#{post}" />
+                        <f:ajax render="@form" />
                     </h:commandLink>
                 </h:column>
-                
+
             </h:dataTable>
         </h:form>
-        
-    </h:body>
-</html>
+
+
+    </ui:define>
+
+
+</ui:composition>

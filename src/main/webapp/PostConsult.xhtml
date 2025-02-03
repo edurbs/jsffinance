@@ -1,11 +1,15 @@
-<ui:composition template="/template/LayoutDefault.xhtml" xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition template="/template/LayoutDefault.xhtml" 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:my="http://java.sun.com/jsf/composite/mycomponents"
+    >
 
     <ui:define name="title">Post Consult</ui:define>
 
     <ui:define name="content">
-        <h:outputStylesheet library="css" name="post-consult.css"/>
+        <h:outputStylesheet library="css" name="post-consult.css"/>        
 
         <h1>Posts</h1>
 
@@ -42,9 +46,8 @@
                     <f:facet name="header">
                         Amount
                     </f:facet>
-                    <h:outputText value="#{post.amount}" styleClass="#{post.type.toString().toLowerCase()}">
-                        <f:convertNumber locale="pt_BR" currencySymbol="R$" type="currency" />
-                    </h:outputText>
+                    
+                    <my:outputCurrency value="#{post.amount}" styleClass="#{post.type.toString().toLowerCase()}" />
                 </h:column>
 
                 <h:column>

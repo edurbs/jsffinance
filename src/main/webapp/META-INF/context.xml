@@ -5,7 +5,12 @@
         connectionURL="jdbc:mysql://localhost:3306/jsffinance?useSSL=false" 
         connectionName="root"
         connectionPassword="senha"
-        userTable="user_name" userNameCol="user_name" userCredCol="password" userRoleTable="user_permission" roleNameCol="permission_name"
-    
-    />
+        userTable="user_name" userNameCol="user_name" userCredCol="password" userRoleTable="user_permission" roleNameCol="permission_name" digest='MD5'    
+    >
+    <CredentialHandler className="org.apache.catalina.realm.MessageDigestCredentialHandler"
+        algorithm="MD5"
+        iterations="1"
+        saltlenght="0"
+        />
+    </Realm>
 </Context>

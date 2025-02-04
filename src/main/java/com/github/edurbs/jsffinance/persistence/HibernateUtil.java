@@ -2,7 +2,9 @@ package com.github.edurbs.jsffinance.persistence;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
     
@@ -10,8 +12,13 @@ public class HibernateUtil {
     
     static {
         try {
-            SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
+            Configuration configuration = new Configuration();
+            configuration.configure();
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                .applySettings(configuration.getProperties()).build();
+            SESSION_FACTORY = configuration.buildSessionFactory(serviceRegistry);
+
+        } catch (Exception ex) {
             ex.printStackTrace();
             throw new ExceptionInInitializerError(ex);
         }        

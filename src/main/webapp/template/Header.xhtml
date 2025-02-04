@@ -11,7 +11,8 @@
                 <f:param value="#{facesContext.externalContext.userPrincipal.name}" />
             </h:outputFormat>
             <h:link outcome="Home">#{msg.home}</h:link>
-            <h:link outcome="PostConsult">#{msg.entries}</h:link>
+            <h:link outcome="PostConsult" rendered="#{request.isUserInRole('read')}">#{msg.entries}</h:link>
+            <h:link outcome="PostRegistry" rendered="#{request.isUserInRole('edit') and not request.isUserInRole('read')}">#{msg.entries}</h:link>
             <h:link outcome="PersonConsult">#{msg.people}</h:link>
             <h:commandLink action="#{securityBean.logout}">#{msg.logout}</h:commandLink>
         </h:form>

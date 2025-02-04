@@ -95,3 +95,7 @@ insert into user_permission values ('joao', 'edit');
 insert into user_permission values ('maria', 'read');
 insert into user_permission values ('sebastiao', 'edit');
 insert into user_permission values ('sebastiao', 'read');
+
+ALTER TABLE jsffinance.user_name MODIFY COLUMN password varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+update user_name set password = md5(password);

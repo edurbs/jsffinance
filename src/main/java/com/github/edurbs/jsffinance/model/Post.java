@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -53,6 +54,9 @@ public class Post implements Serializable, Cloneable {
     //@Convert(converter = LocalDatePersistenceConverter.class)
     @Column(name = "pay_date")
     private Date payDate;
+
+    @Lob
+    private byte[] file;
 
     @Override
     public Object clone() throws CloneNotSupportedException {

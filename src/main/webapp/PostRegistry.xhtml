@@ -13,7 +13,7 @@
 
     <h1>#{postRegistryBean.pageTitle}</h1>
 
-    <h:form id="frm">
+    <h:form id="frm" enctype="multipart/form-data">
         <h:button value="#{msg.new_msg}" outcome="PostRegistry" />
         <h:button value="#{msg.search}" outcome="PostConsult" rendered="#{request.isUserInRole('read')}"/>
         
@@ -105,9 +105,14 @@
                 </h:inputText>
                 <h:message for="payDate" showSummary="true" showDetail="false"/>
             </h:panelGroup>
+
+            <h:outputLabel value="#{msg.payment_receipt}" for="payDate" rendered="#{postRegistryBean.post.paid}"/>
+            <h:inputFile label="#{msg.payment_receipt}" value="#{postRegistryBean.file}" rendered="#{postRegistryBean.post.paid}" />
+            
             
             <h:outputLabel />
-            <h:commandButton value="#{msg.save}" action="#{postRegistryBean.save}">
+            <h:commandButton value="#{msg.save}" action="#{postRegistryBean.save}"
+                actionListener="#{postRegistryBean.uploadFile}">
                 <f:ajax execute="@form" render="@all" />
             </h:commandButton>                    
             

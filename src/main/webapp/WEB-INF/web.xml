@@ -46,6 +46,17 @@
         <role-name>read</role-name>
     </security-role>
 
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Entry edit</web-resource-name>
+            <url-pattern>/PostRegistry.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>edit</role-name>
+        </auth-constraint>
+    </security-constraint>
+
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Entry consult</web-resource-name>
@@ -66,4 +77,9 @@
             <role-name>edit</role-name>
         </auth-constraint>
     </security-constraint>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403.xhtml</location>
+    </error-page>
 </web-app>

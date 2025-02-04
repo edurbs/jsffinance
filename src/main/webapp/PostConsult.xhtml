@@ -15,7 +15,7 @@
 
 
         <h:form id="frm">
-            <h:button value="#{msg.new_entry}" outcome="PostRegistry" />
+            <h:button value="#{msg.new_entry}" outcome="PostRegistry" rendered="#{request.isUserInRole('edit')}" />
             <h:messages showSummary="false" showDetail="true" styleClass="form-messages" errorClass="error"
                 infoClass="info" />
 
@@ -72,7 +72,7 @@
                     <h:outputText value="#{msg.open_bill}" rendered="#{not post.paid}" />
                 </h:column>
 
-                <h:column>
+                <h:column rendered="#{request.isUserInRole('edit')}">
                     <h:link outcome="PostRegistry">
                         <h:graphicImage value="/images/edit.png" />
                         <f:param name="id" value="#{post.id}" />

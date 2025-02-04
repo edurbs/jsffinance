@@ -34,10 +34,16 @@ public class PostRegistryBean implements Serializable {
     private Post post = new Post();
     private String pageTitle;
     
-    @PostConstruct
-    public void init(){        
+    
+    public String init(){
+        if(post.isPaid()){
+            FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, FacesUtil.getMessageI18n("entry_paid_cant_be_edited"));
+            return "PostConsult";
+        }
+
         PersonRepository personRepository = repositoryFactory.getPersonRepository();        
         people = personRepository.listAll();
+        return null;
     }
     
     public void save(){
@@ -73,15 +79,5 @@ public class PostRegistryBean implements Serializable {
         post.setPayDate(null);
         FacesContext.getCurrentInstance().renderResponse();
     }
-
-    public String checkPayment(){
-        if(post.isPaid()){
-            FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, FacesUtil.getMessageI18n("entry_paid_cant_be_edited"));
-            return "PostConsult";
-        }
-        return null;
-
-    }
-    
     
 }

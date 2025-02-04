@@ -2,6 +2,7 @@ CREATE USER 'root'@'%' IDENTIFIED BY 'some_pass';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
 
 CREATE DATABASE `jsffinance` ;
+use jsffinance;
 
 create table person (
   id int not null auto_increment primary key,

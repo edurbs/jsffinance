@@ -83,6 +83,11 @@
                         <f:setPropertyActionListener target="#{postConsultBean.selectedPost}" value="#{post}" />
                         <f:ajax render="@form" />
                     </h:commandLink>
+
+                    <h:commandLink action="#{postConsultBean.downloadReceipt}" target="_blank">
+                        <h:graphicImage value="/images/download.png" />
+                        <f:setPropertyActionListener target="#{postConsultBean.selectedPost}" value="#{post}" />
+                    </h:commandLink>
                 </h:column>
 
             </h:dataTable>

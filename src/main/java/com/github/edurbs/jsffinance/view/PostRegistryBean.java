@@ -44,8 +44,8 @@ public class PostRegistryBean implements Serializable {
         PostRepository postRepository = repositoryFactory.getPostRepository();
         PostUseCase postUseCase = new PostUseCase(postRepository);        
         try {
-            postUseCase.save(post);                
-            FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, "Posted with success!");
+            postUseCase.save(post);
+            FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, FacesUtil.getMessageI18n("entry_saved"));
             post = new Post();            
         } catch (BusinessException e) {
             FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, e.getMessage());
@@ -61,7 +61,7 @@ public class PostRegistryBean implements Serializable {
     }
 
     public String getPageTitle(){
-        return post.getId() == null ? "New post" : "Edit post";
+        return post.getId() == null ? FacesUtil.getMessageI18n("new_entry") : FacesUtil.getMessageI18n("editing_entry");
     }
     
     public PostType[] getPostTypes(){

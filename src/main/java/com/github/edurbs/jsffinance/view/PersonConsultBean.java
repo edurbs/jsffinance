@@ -34,7 +34,7 @@ public class PersonConsultBean implements Serializable {
         try {
             getPersonUseCase().delete(selectedPerson);            
             init();
-            FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, "Person deleted!");
+            FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, FacesUtil.getMessageI18n("person_deleted"));
         } catch (BusinessException e) {
             FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, e.getMessage());
         }

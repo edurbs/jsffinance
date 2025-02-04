@@ -1,5 +1,6 @@
 package com.github.edurbs.jsffinance.view.validator;
 
+import com.github.edurbs.jsffinance.view.util.FacesUtil;
 import com.sun.faces.util.MessageFactory;
 import java.time.LocalDate;
 import javax.faces.application.FacesMessage;
@@ -20,7 +21,7 @@ public class PresentOrPastDateValidator implements Validator {
         LocalDate localDate = (LocalDate) value;
         if(localDate.isAfter(LocalDate.now())){
             Object label = MessageFactory.getLabel(context, component);
-            String errorDescription = label + " can't be in the future.";
+            String errorDescription = label + FacesUtil.getMessageI18n("cannot_be_a_future_date");
             FacesMessage messsage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     errorDescription, errorDescription);
             throw new ValidatorException(messsage);

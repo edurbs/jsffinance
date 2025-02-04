@@ -5,14 +5,14 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:my="http://java.sun.com/jsf/composite/mycomponents">
     <h:head>
-        <title>Person consult</title>
+        <title>#{msg.people}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet library="css" name="system.css"/>
         <h:outputStylesheet library="css" name="person-consult.css"/>
     </h:head>
     <h:body>
-        <h1>People</h1>
-        <h:button value="New" outcome="PersonRegistry"/>
+        <h1>#{msg.people}</h1>
+        <h:button value="#{msg.new_msg}" outcome="PersonRegistry"/>
         <h:messages showSummary="false" showDetail="true"
                         styleClass="form-messages" errorClass="error" infoClass="info"
                         />
@@ -22,35 +22,35 @@
                          >
                 <h:column>
                     <f:facet name="header">
-                        Name
+                        #{msg.name}
                     </f:facet>
                     <h:outputText value="#{person.name}"/>
                 </h:column>
                 
                 <h:column>
                     <f:facet name="header">
-                        Type
+                        #{msg.type}
                     </f:facet>
                     <h:outputText value="#{person.personType.description}"/>
                 </h:column>
                                 
                 <h:column>
                     <f:facet name="header">
-                        Business Line
+                        #{msg.business_line}
                     </f:facet>
                     <h:outputText value="#{person.businessLine.description}"/>
                 </h:column>
                 
                 <h:column>
                     <f:facet name="header">
-                        Email
+                        #{msg.email}
                     </f:facet>  
                     <h:outputText value="#{person.email}" />                        
                 </h:column>
                 
                 <h:column>
                     <f:facet name="header">
-                        Birthday
+                        #{msg.birthday}
                     </f:facet>
                     <my:outputDate value="#{person.birthday}" />
                 </h:column>

@@ -1,5 +1,6 @@
 package com.github.edurbs.jsffinance.view.validator;
 
+import com.github.edurbs.jsffinance.view.util.FacesUtil;
 import com.sun.faces.util.MessageFactory;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -19,7 +20,7 @@ public class ConditionalRequiredValidator implements Validator {
         }
         if(value==null && isPaid){
             Object label = MessageFactory.getLabel(context, component);
-            String errorDescription = label + " is required.";
+            String errorDescription = label + FacesUtil.getMessageI18n("is_required");
             FacesMessage messsage = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     errorDescription, errorDescription);
             throw new ValidatorException(messsage);

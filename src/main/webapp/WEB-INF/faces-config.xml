@@ -8,6 +8,17 @@
 
     <application>
         <message-bundle>Messages</message-bundle>
+
+        <resource-bundle>
+            <base-name>System</base-name>
+            <var>msg</var>
+        </resource-bundle>
+
+        <locale-config>
+            <default-locale>pt</default-locale>
+            <supported-locale>pt</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
     </application>
 
 </faces-config>

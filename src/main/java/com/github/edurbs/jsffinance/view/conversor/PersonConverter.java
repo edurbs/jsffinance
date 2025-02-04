@@ -25,7 +25,7 @@ public class PersonConverter implements Converter{
         Long id = Long.valueOf(value);
         Person person = personRepository.findById(id);
         if(person==null){
-            FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, "Pessoa não encontrada");            
+            FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, FacesUtil.getMessageI18n("person_not_found"));            
         }
         return person;
     }

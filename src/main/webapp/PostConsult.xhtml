@@ -6,16 +6,16 @@
     xmlns:my="http://java.sun.com/jsf/composite/mycomponents"
     >
 
-    <ui:define name="title">Post Consult</ui:define>
+    <ui:define name="title">#{msg.entries}</ui:define>
 
     <ui:define name="content">
         <h:outputStylesheet library="css" name="post-consult.css"/>        
 
-        <h1>Posts</h1>
+        <h1>#{msg.entries}</h1>
 
 
         <h:form id="frm">
-            <h:button value="New post" outcome="PostRegistry" />
+            <h:button value="#{msg.new_entry}" outcome="PostRegistry" />
             <h:messages showSummary="false" showDetail="true" styleClass="form-messages" errorClass="error"
                 infoClass="info" />
 
@@ -30,21 +30,21 @@
 
                 <h:column>
                     <f:facet name="header">
-                        Person
+                        #{msg.person}
                     </f:facet>
                     <h:outputText value="#{post.person.name}" />
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        Description
+                        #{msg.description}
                     </f:facet>
                     <h:outputText value="#{post.description}" />
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        Amount
+                        #{msg.amount}
                     </f:facet>
                     
                     <my:outputCurrency value="#{post.amount}" styleClass="#{post.type.toString().toLowerCase()}" />
@@ -52,24 +52,24 @@
 
                 <h:column>
                     <f:facet name="header">
-                        Due Date
+                        #{msg.due_date}
                     </f:facet>
                     <my:outputDate value="#{post.dueDate}" />
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        Payment Date
+                        #{msg.payment_date}
                     </f:facet>
                     <my:outputDate value="#{post.payDate}" />
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        Status
+                        #{msg.status}
                     </f:facet>
-                    <h:outputText value="Paid" rendered="#{post.paid}" />
-                    <h:outputText value="Open" rendered="#{not post.paid}" />
+                    <h:outputText value="#{msg.paid_bill}" rendered="#{post.paid}" />
+                    <h:outputText value="#{msg.open_bill}" rendered="#{not post.paid}" />
                 </h:column>
 
                 <h:column>

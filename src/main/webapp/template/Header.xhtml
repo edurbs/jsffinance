@@ -6,8 +6,9 @@
 
     <h:graphicImage value="/images/logo.png"  styleClass="logo"/>
     <div class="menu">
-        <h:link outcome="Home">Home</h:link>
-        <h:link outcome="PostConsult">Posts</h:link>
+        <h:link outcome="Home">#{msg.home}</h:link>
+        <h:link outcome="PostConsult">#{msg.entries}</h:link>
+        <h:link outcome="PersonConsult">#{msg.people}</h:link>
     </div>
 </ui:composition>
 

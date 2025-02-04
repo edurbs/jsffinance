@@ -9,6 +9,8 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+import com.github.edurbs.jsffinance.view.util.FacesUtil;
+
 @FacesValidator("BusinessDayValidator")
 public class BusinessDayValidator implements Validator {
 
@@ -21,8 +23,8 @@ public class BusinessDayValidator implements Validator {
         if (isWeekend(localdate)) {
             FacesMessage msg = new FacesMessage(
                     FacesMessage.SEVERITY_ERROR,
-                    "Invalid date", 
-                    "Date must be in a business day");
+                    FacesUtil.getMessageI18n("invalid_date"), 
+                    FacesUtil.getMessageI18n("date_must_be_in_business_day"));
             throw new ValidatorException(msg);
         }
     }

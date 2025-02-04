@@ -18,4 +18,9 @@ public class FacesUtil {
         HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
         return request.getAttribute(name);
     }
+
+    public static String getMessageI18n(String key){
+        FacesContext context = FacesContext.getCurrentInstance();
+        return context.getApplication().getResourceBundle(context, "msg").getString(key);
+    }
 }

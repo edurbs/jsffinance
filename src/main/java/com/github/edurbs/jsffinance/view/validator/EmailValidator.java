@@ -1,5 +1,6 @@
 package com.github.edurbs.jsffinance.view.validator;
 
+import com.github.edurbs.jsffinance.view.util.FacesUtil;
 import com.sun.faces.util.MessageFactory;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -18,7 +19,7 @@ public class EmailValidator implements Validator {
         }
         if(isNotValid(value.toString())){
             Object label = MessageFactory.getLabel(context, component);
-            String errorDescription = label + " is not valid.";
+            String errorDescription = label + " " + FacesUtil.getMessageI18n("is_not_valid");
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorDescription, errorDescription);
             throw new ValidatorException(msg);
             

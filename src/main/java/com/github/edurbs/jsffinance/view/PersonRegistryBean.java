@@ -44,7 +44,7 @@ public class PersonRegistryBean implements Serializable {
         PersonUseCase personUseCase = new PersonUseCase(personRepository);
         personUseCase.save(person);
         
-        FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, "Posted with sucess!");
+        FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, FacesUtil.getMessageI18n("person_saved"));
         person = new Person();
     }
 

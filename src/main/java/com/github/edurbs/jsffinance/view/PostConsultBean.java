@@ -35,7 +35,7 @@ public class PostConsultBean implements Serializable {
         try {
             postUseCase.delete(selectedPost);
             init();
-            FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, "Post deleted!");
+            FacesUtil.addMessage(FacesMessage.SEVERITY_INFO, FacesUtil.getMessageI18n("entry_deleted"));
         } catch (BusinessException e) {
             FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, e.getMessage());
         }        

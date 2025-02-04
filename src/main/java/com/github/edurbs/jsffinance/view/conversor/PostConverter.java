@@ -25,9 +25,8 @@ public class PostConverter implements Converter {
         }
         Post post = postRepository.findById(Long.valueOf(value));
         if(post==null){
-            String message = "Post does not exists";
+            String message = FacesUtil.getMessageI18n("entry_does_not_exist");
             FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, message);
-            //throw new ConverterException(message);
             return null;
         }
         return post;

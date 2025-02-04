@@ -13,8 +13,8 @@
     <h1>#{postRegistryBean.pageTitle}</h1>
 
     <h:form id="frm">
-        <h:button value="New" outcome="PostRegistry" />
-        <h:button value="Consult" outcome="PostConsult" />
+        <h:button value="#{msg.new_msg}" outcome="PostRegistry" />
+        <h:button value="#{msg.search}" outcome="PostConsult" />
         
         <h:messages showSummary="false" showDetail="true"
                     styleClass="form-messages" errorClass="error" infoClass="info"
@@ -25,52 +25,52 @@
                      columnClasses="label, field"
                      >
             
-            <h:outputLabel value="Type"/>
-            <h:selectOneRadio value="#{postRegistryBean.post.type}" required="true" label="Post type">
+            <h:outputLabel value="#{msg.type}"/>
+            <h:selectOneRadio value="#{postRegistryBean.post.type}" required="true" label="#{msg.entry_type}">
                 <f:selectItems value="#{postRegistryBean.postTypes}" 
                                var="postType"
-                               itemLabel="#{postType.description}"
+                               itemLabel="#{msg[postType.description]}"
                                itemValue="#{postType}"
                                />
                 
             </h:selectOneRadio>
             
-            <h:outputLabel value="Person"/>
-            <h:selectOneMenu value="#{postRegistryBean.post.person}" label="Person" required="true">
-                <f:selectItem itemLabel="Select" noSelectionOption="true"/>
+            <h:outputLabel value="#{msg.person}"/>
+            <h:selectOneMenu value="#{postRegistryBean.post.person}" label="#{msg.person}" required="true">
+                <f:selectItem itemLabel="#{msg.select}" noSelectionOption="true"/>
                 <f:selectItems value="#{postRegistryBean.people}"
                                var="person" itemValue="#{person}"
                                itemLabel="#{person.name}"/>
             </h:selectOneMenu>
             
-            <h:outputLabel value="Description" for="description"/>
+            <h:outputLabel value="#{msg.description}" for="description"/>
             <h:panelGroup>
                 <h:inputText value="#{postRegistryBean.post.description}" 
                              id="description" size="30" 
-                             label="Description" 
+                             label="#{msg.description}" 
                              required="true"
-                             requiredMessage="Type a description!"
-                             validatorMessage="Description is too small! Must be bigger then 5 chars."
+                             requiredMessage="#{msg.description_required}"
+                             validatorMessage="#{msg.description_invalid}"
                              >
                     <f:validateLength minimum="5"/>
                 </h:inputText>
                 <h:message for="description" showSummary="true" showDetail="false"/>
             </h:panelGroup>
             
-            <h:outputLabel value="Amount" for="amount"/>
+            <h:outputLabel value="#{msg.amount}" for="amount"/>
             <h:panelGroup>
                 <h:inputText value="#{postRegistryBean.post.amount}"
-                    id="amount" size="12" label="Amount" required="true">
+                    id="amount" size="12" label="#{msg.amount}" required="true">
                     <f:validateDoubleRange minimum="0"/>
                     <f:convertNumber maxFractionDigits="2" minFractionDigits="2" locale="pt_BR"/>
                 </h:inputText>
                 <h:message for="amount" showSummary="true" showDetail="false" /> 
             </h:panelGroup>
             
-            <h:outputLabel value="Due Date" for="dueDate"/>
+            <h:outputLabel value="#{msg.due_date}" for="dueDate"/>
             <h:panelGroup>
                 <h:inputText value="#{postRegistryBean.post.dueDate}"
-                    id="dueDate" size="12" label="Due Date"
+                    id="dueDate" size="12" label="#{msg.due_date}"
                      required="true"
                     >
                     <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -85,13 +85,13 @@
                     immediate="true"
                     valueChangeListener="#{postRegistryBean.onIsPaidChange}"
                     onchange="jsf.ajax.request(this, event, {execute: '@form', render: 'frm:panelGrid'})"/>
-                <h:outputLabel value="Paid" for="paidCheckbox"/>
+                <h:outputLabel value="#{msg.paid_bill}" for="paidCheckbox"/>
             </h:panelGroup>
             
-            <h:outputLabel value="Payment date" for="payDate" rendered="#{postRegistryBean.post.paid}"/>
+            <h:outputLabel value="#{msg.payment_date}" for="payDate" rendered="#{postRegistryBean.post.paid}"/>
             <h:panelGroup rendered="#{postRegistryBean.post.paid}" >
                 <h:inputText value="#{postRegistryBean.post.payDate}"
-                    id="payDate" size="12" label="Payment date"
+                    id="payDate" size="12" label="#{msg.payment_date}"
                     
                    
                     >
@@ -106,7 +106,7 @@
             </h:panelGroup>
             
             <h:outputLabel />
-            <h:commandButton value="Save" action="#{postRegistryBean.save}">
+            <h:commandButton value="#{msg.save}" action="#{postRegistryBean.save}">
                 <f:ajax execute="@form" render="@all" />
             </h:commandButton>                    
             

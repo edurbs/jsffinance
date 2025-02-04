@@ -107,7 +107,7 @@
             </h:panelGroup>
 
             <h:outputLabel value="#{msg.payment_receipt}" for="payDate" rendered="#{postRegistryBean.post.paid}"/>
-            <h:inputFile label="#{msg.payment_receipt}" value="#{postRegistryBean.file}" rendered="#{postRegistryBean.post.paid}" />
+            <h:inputFile label="#{msg.payment_receipt}" value="#{postRegistryBean.file}" rendered="#{postRegistryBean.post.paid}" validator="ReceiptValidator" />
             
             
             <h:outputLabel />

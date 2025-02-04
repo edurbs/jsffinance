@@ -100,3 +100,4 @@ ALTER TABLE jsffinance.user_name MODIFY COLUMN password varchar(255) CHARACTER S
 
 update user_name set password = md5(password);
 alter table post add file blob;
+ALTER TABLE jsffinance.post MODIFY COLUMN file LONGBLOB NULL;

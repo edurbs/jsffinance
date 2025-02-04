@@ -118,3 +118,7 @@ ul.form-messages {
 	margin-top: 10px;
 	border-top: 1px solid #cfcfcf;
 }
+
+.logged-user {
+	margin-right: 10px;
+}

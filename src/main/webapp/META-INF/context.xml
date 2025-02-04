@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/jsffinance"/>
+<Context path="/jsffinance">
+    <Realm className="org.apache.catalina.realm.JDBCRealm"
+        driverName="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/jsffinance?useSSL=false" 
+        connectionName="root"
+        connectionPassword="senha"
+        userTable="user_name" userNameCol="user_name" userCredCol="password" userRoleTable="user_permission" roleNameCol="permission_name"
+    
+    />
+</Context>

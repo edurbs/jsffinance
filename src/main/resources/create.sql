@@ -75,3 +75,23 @@ UPDATE jsffinance.person
 	SET birthday='2001/12/30',person_type='COMPANY',email='asd@asd.com',business_line_id=1
 	WHERE id=5;
 
+create table user_name (
+   user_name varchar(15) not null primary key,
+   password varchar(15) not null
+);
+
+create table user_permission (
+   user_name	varchar(15) not null,
+   permission_name varchar(15) not null, 
+   primary key (user_name, permission_name),
+   foreign key (user_name) references user_name (user_name)
+);
+
+insert into user_name values ('joao', 'joao');
+insert into user_name values ('maria', 'maria');
+insert into user_name values ('sebastiao', 'sebastiao');
+
+insert into user_permission values ('joao', 'edit');
+insert into user_permission values ('maria', 'read');
+insert into user_permission values ('sebastiao', 'edit');
+insert into user_permission values ('sebastiao', 'read');

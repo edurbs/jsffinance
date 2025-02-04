@@ -1,6 +1,6 @@
 <ui:composition template="/template/LayoutDefault.xhtml" xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core">
+    xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">#{postRegistryBean.pageTitle}</ui:define>
 
@@ -8,6 +8,7 @@
 
     <f:metadata>
         <f:viewParam name="id" value="#{postRegistryBean.post}" />
+        <f:viewAction action="#{postRegistryBean.checkPayment}" />
     </f:metadata>  
 
     <h1>#{postRegistryBean.pageTitle}</h1>

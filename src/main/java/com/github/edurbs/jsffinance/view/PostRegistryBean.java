@@ -73,6 +73,15 @@ public class PostRegistryBean implements Serializable {
         post.setPayDate(null);
         FacesContext.getCurrentInstance().renderResponse();
     }
+
+    public String checkPayment(){
+        if(post.isPaid()){
+            FacesUtil.addMessage(FacesMessage.SEVERITY_ERROR, FacesUtil.getMessageI18n("entry_paid_cant_be_edited"));
+            return "PostConsult";
+        }
+        return null;
+
+    }
     
     
 }
